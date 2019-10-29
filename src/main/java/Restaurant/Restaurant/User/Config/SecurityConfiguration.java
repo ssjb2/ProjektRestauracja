@@ -1,9 +1,9 @@
 package Restaurant.Restaurant.User.Config;
 
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -11,6 +11,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.
+                formLogin()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/users/**").hasRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout");
+
+    }
 
 
     @Override
@@ -20,16 +34,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password(("admin")).roles("ADMIN");
     }
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-
-        httpSecurity.
-                authorizeRequests()
-                .anyRequest()
-                .fullyAuthenticated()
-                .and().httpBasic();
-        httpSecurity.csrf().disable();
-
+    public void configure(WebSecurity web) throws Exception {
+        super.configure(web);
     }
+
 
 }

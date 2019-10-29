@@ -28,4 +28,9 @@ public class UserController {
         userService.addUser(user);
     }
 
+    @GetMapping("test")
+    public String test(){
+        return "test";
+    }
+
 }
