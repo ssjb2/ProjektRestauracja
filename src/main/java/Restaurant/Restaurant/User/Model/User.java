@@ -3,6 +3,7 @@ package Restaurant.Restaurant.User.Model;
 import lombok.Data;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -16,20 +17,37 @@ public class User implements Serializable {
     private String lastName;
     private String username;
     private String password;
+    private int active;
 
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private List<Role> roles;
 
-    public User(String firstName, String lastName, String username, String password) {
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Role> roles;
+
+
+    public User(String firstName, String lastName, String username, String password, int active) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.active = active;
     }
+
 
     public User() {
 
     }
+
+    public User(User user) {
+        this.active = user.getActive();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.roles = user.getRoles();
+        this.id = user.getId();
+
+    }
+
 
     public Long getId() {
         return id;
@@ -71,12 +89,21 @@ public class User implements Serializable {
         this.password = password;
     }
 
-//    public List<Role> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<Role> roles) {
-//        this.roles = roles;
-//    }
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
 
 }
