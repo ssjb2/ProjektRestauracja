@@ -2,11 +2,14 @@ package Restaurant.Restaurant.Order.Model;
 
 import Restaurant.Restaurant.Restaurant.Dish;
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
+import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
+
+@Data
+@Entity
+@Table(name = "Order")
 
 public class Order {
     @Id
@@ -39,13 +42,13 @@ public class Order {
     }
     public List<Dish> getDish(){
         return Dish;
-        }
-     public void setDish(List<Dish> dish){
+    }
+    public void setDish(List<Dish> dish){
         Dish = dish;
-         }
+    }
     public float getPrice(){
         return price;
-}
+    }
     public void setPrice(float price){
         this.price = price;
     }
