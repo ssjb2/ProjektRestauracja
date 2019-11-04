@@ -1,16 +1,18 @@
 package Restaurant.Restaurant.User.controller;
 
 import Restaurant.Restaurant.User.Model.User;
-import Restaurant.Restaurant.User.service.UserService;
+import Restaurant.Restaurant.User.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
-@RequestMapping("/users")
+@RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
 
     @GetMapping("/getAll")
@@ -19,9 +21,10 @@ public class UserController {
     }
 
     @GetMapping("/get={name}")
-    public User getByName(@PathVariable String username){
+    public Optional<User> getByName(@PathVariable String username){
         return userService.getByUsername(username);
     }
+
 
     @PostMapping("/add")
     public void addUser(@RequestBody User user){

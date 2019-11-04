@@ -1,14 +1,14 @@
 package Restaurant.Restaurant;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import static org.springframework.boot.SpringApplication.run;
 
 @SpringBootApplication
 public class RestaurantApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(RestaurantApplication.class, args);
+		run(RestaurantApplication.class, args);
 	}
 
 }
