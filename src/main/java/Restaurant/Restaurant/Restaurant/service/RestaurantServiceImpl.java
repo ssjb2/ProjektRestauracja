@@ -11,22 +11,22 @@ import java.util.List;
 public class RestaurantServiceImpl implements RestaurantService {
 
     @Autowired
-    RestaurantRepository repository;
+    RestaurantRepository restaurantRepository;
 
     @Override
     public void addRestaurant(Restaurant restaurant) {
-        repository.save(restaurant);
+        restaurantRepository.save(restaurant);
 
     }
 
     @Override
     public List<Restaurant> getAll() {
-        return repository.findAll();
+        return  restaurantRepository.findAll();
     }
 
     @Override
     public Restaurant getByname(String name) {
-        return repository.findByName(name);
+        return  restaurantRepository.findByName(name);
     }
 
 }
