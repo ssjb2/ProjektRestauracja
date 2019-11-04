@@ -12,7 +12,7 @@ import java.util.List;
 public class DishServiceImpl implements Dishservice {
 
     @Autowired
-    DishRepository repository;
+    private DishRepository repository;
 
     @Override
     public void addDish(Dish dish) {

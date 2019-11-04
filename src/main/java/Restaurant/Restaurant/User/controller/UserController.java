@@ -14,6 +14,10 @@ public class UserController {
     @Autowired
     UserServiceImpl userService;
 
+    @GetMapping("")
+    public String userHomePage(){
+        return "userHomePage";
+    }
 
     @GetMapping("/getAll")
     public List<User> getAll(){
@@ -30,16 +34,5 @@ public class UserController {
     public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
-
-    @GetMapping("/user/homepage")
-    public String userHomePage(){
-        return "userHomePage";
-    }
-
-    @GetMapping("/admin/homepage")
-    public String adminHomePage(){
-        return "userHomePage";
-    }
-
 
 }
