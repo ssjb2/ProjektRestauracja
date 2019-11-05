@@ -2,6 +2,7 @@ package Restaurant.Restaurant;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static org.springframework.boot.SpringApplication.run;
 
@@ -11,6 +12,8 @@ import static org.springframework.boot.SpringApplication.run;
 @ComponentScan("Restaurant.Restaurant.Restaurant")
 @ComponentScan("Restaurant.Restaurant.Config")
 @ComponentScan("Restaurant.Restaurant.Order")
+@ComponentScan
+@EnableWebMvc
 public class RestaurantApplication {
 
 	public static void main(String[] args) {
