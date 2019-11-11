@@ -2,17 +2,21 @@ package Restaurant.Restaurant.User.Model;
 
 import lombok.Data;
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Role")
+@Table(name = "role")
 public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
 
     public Role(String name) {
         this.name = name;

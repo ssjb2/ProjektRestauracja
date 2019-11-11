@@ -15,4 +15,8 @@ public interface UserService {
 
     public Optional<User> getByUsername(String username);
 
+    public Optional<User> getById(Long id);
+
+
+    public boolean isUserExist(User user);
 }

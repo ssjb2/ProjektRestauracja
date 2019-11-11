@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Users")
+@Table(name = "userr")
 public class User  {
 
     @Id
@@ -22,8 +22,11 @@ public class User  {
     private String username;
     @NonNull
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Role> roles;
+
+
+
+    @ManyToMany
+    private List<Role> roles;
 
 
     public User(String firstName, String lastName, String username, String password) {
@@ -88,11 +91,11 @@ public class User  {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

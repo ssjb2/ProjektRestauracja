@@ -1,21 +1,47 @@
 package Restaurant.Restaurant.Order.Model;
 
-import lombok.Data;
+import Restaurant.Restaurant.Dish.Model.Dish;
+import Restaurant.Restaurant.Restaurant.Model.Restaurant;
+import Restaurant.Restaurant.User.Model.Role;
+import Restaurant.Restaurant.User.Model.User;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-@Entity
+import static javax.persistence.CascadeType.ALL;
+
 @Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "orderr")
 public class OrderModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name="Restaurant_id")
+    private Restaurant restaurant;
 
-    public OrderModel() {
-    }
+    private LocalDate date;
+
+    @ManyToOne
+    @JoinColumn(name="User_id")
+    private User user;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    private List<Dish> dishes;
+
+    private float price;
+
+
+
 }
