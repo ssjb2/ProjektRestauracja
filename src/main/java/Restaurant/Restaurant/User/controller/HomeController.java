@@ -15,6 +15,11 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String logout(){
+        return "login";
+    }
+
     @RequestMapping(value="/", method= RequestMethod.GET)
     public String home(Model model){
         return "login";
