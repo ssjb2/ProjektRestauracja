@@ -12,7 +12,6 @@ import static org.springframework.boot.SpringApplication.run;
 @ComponentScan("Restaurant.Restaurant.Restaurant")
 @ComponentScan("Restaurant.Restaurant.Config")
 @ComponentScan("Restaurant.Restaurant.Order")
-@ComponentScan
 @EnableWebMvc
 public class RestaurantApplication {
 

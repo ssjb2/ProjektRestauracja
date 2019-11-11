@@ -1,25 +1,27 @@
 package Restaurant.Restaurant.User.Model;
 
 import lombok.Data;
+import org.springframework.lang.NonNull;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "Users")
-public class User implements Serializable {
+public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
+    @NonNull
     private String username;
+    @NonNull
     private String password;
-    private int active;
-
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;
 
@@ -29,17 +31,21 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+
     }
 
-
-
     public User() {
+
     }
 
     public User(User user) {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.roles = user.getRoles();
+        this.id = user.getId();
+
     }
 
     public Long getId() {
@@ -88,14 +94,6 @@ public class User implements Serializable {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public int getActive() {
-        return active;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
     }
 
 
