@@ -25,10 +25,9 @@ public class AdminController {
     UserService userService;
 
 
-
     @GetMapping("/homepage")
 
-    public String adminHomePage(Model model){
+    public String adminHomePage(Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -38,18 +37,27 @@ public class AdminController {
 
         return "adminHomepage";
     }
+
+    @GetMapping("/listUsers")
+    public String listUsers(Model model){
+
+        model.addAttribute("users",userService.getAll());
+
+        return "users/listUsers";
+    }
+
     @GetMapping("/getAll")
-    public List<User> getAll(){
+    public List<User> getAll() {
         return userService.getAll();
     }
 
     @GetMapping("/getByUserName={username}")
-    public Optional<User> getByUsername(@PathVariable String username){
+    public Optional<User> getByUsername(@PathVariable String username) {
         return userService.getByUsername(username);
     }
 
     @PostMapping("/addUser")
-    public void addUser(@RequestBody User user){
+    public void addUser(@RequestBody User user) {
         userService.addUser(user);
     }
 
@@ -62,10 +70,24 @@ public class AdminController {
     public void editUser(@PathVariable Long id) {
         Optional<User> tempOptUser = userService.getById(id);
 
-        if(tempOptUser.isPresent()){
+        if (tempOptUser.isPresent()) {
             userService.editUser(tempOptUser.get());
         }
+    }
 
+    @PostMapping("/removeUser")
+    public void removeUser(@RequestBody User user) {
+        userService.removeUser(user.getId());
+    }
+
+    @GetMapping("removeUserById={id}")
+    public void removeUser(@PathVariable Long id) {
+        Optional<User> tempOptUser = userService.getById(id);
+
+        if (tempOptUser.isPresent()) {
+            userService.editUser(tempOptUser.get());
+        }
+        userService.removeUser(id);
     }
 
 }
