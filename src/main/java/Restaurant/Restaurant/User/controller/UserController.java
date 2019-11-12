@@ -31,35 +31,4 @@ public class UserController {
         return "homepage";
     }
 
-
-    @GetMapping("/getAll")
-    public List<User> getAll(){
-        return userService.getAll();
-    }
-
-    @GetMapping("/getByUserName={username}")
-    public Optional<User> getByUsername(@PathVariable String username){
-        return userService.getByUsername(username);
-    }
-
-    @PostMapping("/addUser")
-    public void addUser(@RequestBody User user){
-        userService.addUser(user);
-    }
-
-    @PostMapping("/editUser")
-    public void editUser(@RequestBody User user) {
-        userService.editUser(user);
-    }
-
-    @GetMapping("/editUserById={id}")
-    public void editUser(@PathVariable Long id) {
-        userService.editUserById(id);
-    }
-
-
-
-
-
-
 }
