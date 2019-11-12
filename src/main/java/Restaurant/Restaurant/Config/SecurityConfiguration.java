@@ -3,6 +3,7 @@ package Restaurant.Restaurant.Config;
 import Restaurant.Restaurant.User.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -38,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/login").failureUrl("/login?error=true")
                     .permitAll()
-                    .defaultSuccessUrl("/user/homepage",true)
+                    .defaultSuccessUrl("/CheckLogin",true)
                     .and()
                     .logout()
                     .logoutSuccessUrl("/login?logout=true")

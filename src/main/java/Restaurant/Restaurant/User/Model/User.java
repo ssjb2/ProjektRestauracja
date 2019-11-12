@@ -25,7 +25,7 @@ public class User  {
 
 
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Role> roles;
 
 

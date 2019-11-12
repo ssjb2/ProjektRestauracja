@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Restaurant</title>
+    <style>
+        .ui-group-buttons .or{position:relative;float:left;width:.3em;height:1.3em;z-index:3;font-size:12px}
+        .ui-group-buttons .or:before{position:absolute;top:50%;left:50%;content:'lub';background-color:#5a5a5a;margin-top:-.1em;margin-left:-.9em;width:1.8em;height:1.8em;line-height:1.55;color:#fff;font-style:normal;font-weight:400;text-align:center;border-radius:500px;-webkit-box-shadow:0 0 0 1px rgba(0,0,0,0.1);box-shadow:0 0 0 1px rgba(0,0,0,0.1);-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
+        .ui-group-buttons .or:after{position:absolute;top:0;left:0;content:' ';width:.3em;height:2.84em;background-color:rgba(0,0,0,0);border-top:.6em solid #5a5a5a;border-bottom:.6em solid #5a5a5a}
+        .ui-group-buttons .or.or-lg{height:1.3em;font-size:16px}
+        .ui-group-buttons .or.or-lg:after{height:2.85em}
+        .ui-group-buttons .or.or-sm{height:1em}
+        .ui-group-buttons .or.or-sm:after{height:2.5em}
+        .ui-group-buttons .or.or-xs{height:.25em}
+        .ui-group-buttons .or.or-xs:after{height:1.84em;z-index:-1000}
+        .ui-group-buttons{display:inline-block;vertical-align:middle}
+        .ui-group-buttons:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+        .ui-group-buttons .btn{float:left;border-radius:0}
+        .ui-group-buttons .btn:first-child{margin-left:0;border-top-left-radius:.25em;border-bottom-left-radius:.25em;padding-right:15px}
+        .ui-group-buttons .btn:last-child{border-top-right-radius:.25em;border-bottom-right-radius:.25em;padding-left:15px}
+	</style>
+</head>
+<body>
+
+<div class="container" style="width: 100%">
+    <div class="row">
+        <div class="col-xs-12" style="background-color:gray; height:50px">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Restaurant</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">option1</a></li>
+                                <li><a href="">option2</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options2
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">option11</a></li>
+                                <li><a href="">option22</a></li>
+                            </ul>
+                        </li>
+
+
+
+
+                    </ul>
+
+                    <span class="badge badge-info align-middle">
+                        <p>Zalogowany jako: <p th:text="${currentUserName}">default</p></a></p>
+                    </span>
+
+
+                    <form method="GET" th:action="@{/logout}" class="navbar-form navbar-right">
+
+                        <input type="hidden">
+                        <button type="submit" name="logout" value="true" class="link-button navbar-form">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-1" style="background-color:lightgray; height:800px"></div>
+        <div class="col-xs-10 text-center" style="background-color:white; height:800px; display: table">
+            <div style="height: 100px; width: 400px; margin-left: auto; margin-right: auto;   border-bottom: 1px solid gray; background-color: lightgray">
+                <h3>Zamówienia</h3><br>
+                <div class="ui-group-buttons">
+                    <a href="" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span> Dodaj zamowienie</a>
+                    <div class="or"></div>
+                    <a href="" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-trash"></span> Usun zamowienie</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-1" style="background-color:lightgray; height:800px"></div>
+    </div>
+</div>
+</body>
+</html>

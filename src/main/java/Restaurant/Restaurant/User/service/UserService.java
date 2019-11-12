@@ -19,4 +19,9 @@ public interface UserService {
 
 
     public boolean isUserExist(User user);
+
+    public void editUser(User user);
+
+    public User editUserById(Long id);
+
 }

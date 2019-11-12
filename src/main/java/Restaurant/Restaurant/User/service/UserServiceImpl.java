@@ -37,4 +37,15 @@ public class UserServiceImpl implements UserService{
     public boolean isUserExist(User user) {
         return repository.existsById(user.getId());
     }
+
+    @Override
+    public void editUser(User user) {
+        repository.update(user.getFirstName(),user.getLastName(),user.getUsername(),user.getPassword());
+    }
+
+    @Override
+    public User editUserById(Long id) {
+        return null;
+    }
+
 }
