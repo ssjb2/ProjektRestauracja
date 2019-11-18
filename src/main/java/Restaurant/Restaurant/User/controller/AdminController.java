@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.xml.ws.ResponseWrapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -73,20 +71,48 @@ public class AdminController {
         return "restaurants/listRestaurants";
     }
 
-    @GetMapping("/editUser=name")
+    @GetMapping("/editUser/{id}")
     public String editUser(@PathVariable Long id, Model model){
+
+        model.addAttribute("currentUserName", getCurrentUserName());
+        model.addAttribute("restaurants",restaurantService.getAll());
 
         Optional<User> optuser = userService.getById(id);
 
         if(optuser.isPresent()){
             User user = optuser.get();
 
-            model.addAttribute("Firstname", user.getFirstName());
-            model.addAttribute("Lastname",user.getLastName());
-            model.addAttribute("Username", user.getUsername());
-            model.addAttribute("Password",user.getPassword());
+            model.addAttribute("firstnameModel", user.getFirstName());
+            model.addAttribute("lastnameModel",user.getLastName());
+            model.addAttribute("usernameModel", user.getUsername());
+            model.addAttribute("passwordModel",user.getPassword());
+            model.addAttribute("restaurantModel",user.getRestaurant().getName());
+            model.addAttribute("ajdi",user.getId());
         }
-        return "editUser";
+
+        return "/users/editUser";
+    }
+
+    @PostMapping("/confirmEditUser/{id}")
+    public ModelAndView confirmEditUser(@RequestParam("imie") String imie,
+                                        @RequestParam("nazwisko") String nazwisko,
+                                        @RequestParam("username") String username,
+                                        @RequestParam("password") String password,
+                                        @RequestParam("restaurant") String restaurant,
+                                        @PathVariable Long id,
+                                        Model model){
+
+        userService.removeUser(id);
+        //check username is used
+        if(userService.isUsernameUsed(username)){
+            model.addAttribute("usernameIsUsed",true);
+            return new ModelAndView("redirect:/admin/editUser/{id}");
+        }
+        else{
+            userService.addUser(imie, nazwisko, username, password, restaurant);
+            model.addAttribute("update",true);
+            return new ModelAndView("redirect:/admin/listUsers");
+        }
     }
 
     @GetMapping("/newUser")
@@ -99,27 +125,25 @@ public class AdminController {
     }
 
 
-    @PostMapping("/addUser")
+    @PostMapping("/confirmAddUser")
     @ResponseBody
     public ModelAndView addUser(@RequestParam("imie") String imie,
                                 @RequestParam("nazwisko") String nazwisko,
                                 @RequestParam("username") String username,
                                 @RequestParam("password") String password,
-                                @RequestParam("restaurant") String restaurant){
+                                @RequestParam("restaurant") String restaurant,
+                                Model model){
 
-        User user = new User();
-        user.setFirstName(imie);
-        user.setLastName(nazwisko);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setRestaurant(restaurantService.getByname(restaurant));
-        List<Role> tempList= new ArrayList<Role>();
-        tempList.add(roleRepository.findByName("USER"));
-        user.setRoles(tempList);
-        userService.addUser(user);
-
-
-        return new ModelAndView("redirect:/admin/listUsers");
+        //check username is used
+        if(userService.isUsernameUsed(username)){
+            model.addAttribute("usernameIsUsed",true);
+            return new ModelAndView("redirect:/admin/newUser");
+        }
+        else{
+            userService.addUser(imie, nazwisko, username, password, restaurant);
+            model.addAttribute("add", true);
+            return new ModelAndView("redirect:/admin/listUsers");
+        }
     }
 
     @GetMapping("/removeUser/{id}")

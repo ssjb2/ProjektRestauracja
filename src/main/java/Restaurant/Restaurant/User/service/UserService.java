@@ -11,17 +11,28 @@ public interface UserService {
 
     public void addUser(User user);
 
+    public void addUser(String firstname, String lastname, String username, String password, String restaurant);
+
     public List<User> getAll();
 
     public Optional<User> getByUsername(String username);
 
     public Optional<User> getById(Long id);
 
-
     public boolean isUserExist(User user);
 
     public void editUser(User user);
 
+    public void editUser(Long id, String firstname, String lastname, String username, String password, String restaurant);
+
     public void removeUser(Long id);
+
+    public boolean isUsernameUsed(String username);
+
+
+
+
+
+
 
 }

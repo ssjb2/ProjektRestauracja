@@ -191,7 +191,7 @@
 					</span>
                                 <ul class="list-group-submenu">
                                     <a th:href="@{'/admin/removeUser/' + ${userr.id}}"><li class="list-group-submenu-item danger"><span class="glyphicon glyphicon-trash"></span></li></a>
-                                    <a href=""><li class="list-group-submenu-item warning"> <span class="glyphicon glyphicon-pencil"> </span></li></a>
+                                    <a th:href="@{'/admin/editUser/' + ${userr.id}}"><li class="list-group-submenu-item warning"> <span class="glyphicon glyphicon-pencil"> </span></li></a>
                                 </ul>
                             </li>
                         </ul>

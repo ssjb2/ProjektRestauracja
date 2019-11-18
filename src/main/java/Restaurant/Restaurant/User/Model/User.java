@@ -24,7 +24,9 @@ public class User  {
     private Long id;
     private String firstName;
     private String lastName;
+
     @NotNull
+    @Column(unique = true)
     private String username;
     @NotNull
     private String password;
