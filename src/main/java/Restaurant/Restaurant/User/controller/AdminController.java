@@ -1,5 +1,7 @@
 package Restaurant.Restaurant.User.controller;
 
+import Restaurant.Restaurant.Dish.service.Dishservice;
+import Restaurant.Restaurant.Restaurant.service.RestaurantService;
 import Restaurant.Restaurant.User.Model.User;
 import Restaurant.Restaurant.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,30 +12,28 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
 
-
-
 @Controller
-
 @RequestMapping(("/admin"))
 public class AdminController {
 
     @Autowired
     UserService userService;
 
+    @Autowired
+    Dishservice dishservice;
+
+    @Autowired
+    RestaurantService restaurantService;
 
     @GetMapping("/homepage")
+    public String adminHomePage(Model model){
 
-    public String adminHomePage(Model model) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUserName = authentication.getName();
-            model.addAttribute("currentUserName", currentUserName);
-        }
+        model.addAttribute("currentUserName", getCurrentUserName());
 
         return "adminHomepage";
     }
@@ -41,53 +41,67 @@ public class AdminController {
     @GetMapping("/listUsers")
     public String listUsers(Model model){
 
+        model.addAttribute("currentUserName", getCurrentUserName());
         model.addAttribute("users",userService.getAll());
 
         return "users/listUsers";
     }
 
-    @GetMapping("/getAll")
-    public List<User> getAll() {
-        return userService.getAll();
+    @GetMapping("/listDishes")
+    public String listDishes(Model model){
+
+        model.addAttribute("currentUserName", getCurrentUserName());
+        model.addAttribute("dishes",dishservice.getAll());
+
+        return "dishes/listDishes";
     }
 
-    @GetMapping("/getByUserName={username}")
-    public Optional<User> getByUsername(@PathVariable String username) {
-        return userService.getByUsername(username);
+    @GetMapping("/listRestaurants")
+    public String listRestaurants(Model model){
+
+        model.addAttribute("currentUserName", getCurrentUserName());
+        model.addAttribute("restaurants",restaurantService.getAll());
+
+        return "restaurants/listRestaurants";
     }
 
-    @PostMapping("/addUser")
-    public void addUser(@RequestBody User user) {
-        userService.addUser(user);
-    }
 
-    @PostMapping("/editUser")
-    public void editUser(@RequestBody User user) {
-        userService.editUser(user);
-    }
+    @GetMapping("/editUser=name")
+    public String editUser(@PathVariable Long id, Model model){
 
-    @GetMapping("/editUserById={id}")
-    public void editUser(@PathVariable Long id) {
-        Optional<User> tempOptUser = userService.getById(id);
+        Optional<User> optuser = userService.getById(id);
 
-        if (tempOptUser.isPresent()) {
-            userService.editUser(tempOptUser.get());
+        if(optuser.isPresent()){
+            User user = optuser.get();
+
+            model.addAttribute("Firstname", user.getFirstName());
+            model.addAttribute("Lastname",user.getLastName());
+            model.addAttribute("Username", user.getUsername());
+            model.addAttribute("Password",user.getPassword());
         }
+        return "editUser";
     }
 
-    @PostMapping("/removeUser")
-    public void removeUser(@RequestBody User user) {
-        userService.removeUser(user.getId());
-    }
+    @GetMapping("/removeUser=id")
+    public ModelAndView removeUser(@PathVariable Long id, Model model){
 
-    @GetMapping("removeUserById={id}")
-    public void removeUser(@PathVariable Long id) {
-        Optional<User> tempOptUser = userService.getById(id);
-
-        if (tempOptUser.isPresent()) {
-            userService.editUser(tempOptUser.get());
-        }
         userService.removeUser(id);
+
+        return new ModelAndView("admin/listUsers");
     }
+
+
+
+    private String getCurrentUserName() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            return currentUserName;
+        }
+        else{
+            return "default";
+        }
+    }
+
 
 }
