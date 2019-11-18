@@ -1,12 +1,10 @@
-package Restaurant.Restaurant.User.controller;
+package Restaurant.Restaurant.User.Controller;
 
 import Restaurant.Restaurant.Dish.service.Dishservice;
 import Restaurant.Restaurant.Restaurant.service.RestaurantService;
-import Restaurant.Restaurant.User.Model.Role;
 import Restaurant.Restaurant.User.Model.User;
 import Restaurant.Restaurant.User.repository.RoleRepository;
 import Restaurant.Restaurant.User.service.UserService;
-import Restaurant.Restaurant.Wrapper.userWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,8 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Optional;
 
 @Controller
@@ -60,15 +57,6 @@ public class AdminController {
         model.addAttribute("dishes",dishservice.getAll());
 
         return "dishes/listDishes";
-    }
-
-    @GetMapping("/listRestaurants")
-    public String listRestaurants(Model model){
-
-        model.addAttribute("currentUserName", getCurrentUserName());
-        model.addAttribute("restaurants",restaurantService.getAll());
-
-        return "restaurants/listRestaurants";
     }
 
     @GetMapping("/editUser/{id}")

@@ -1,4 +1,5 @@
 package Restaurant.Restaurant.Restaurant.service;
+
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -9,9 +10,11 @@ public interface RestaurantService {
 
     public void addRestaurant(Restaurant restaurant);
 
+    public void addRestaurant(String name, String address);
+
     public List<Restaurant> getAll();
 
-    public Restaurant getByname(String name);
+    public Restaurant getByName(String name);
 
     public void editRestaurant(Restaurant restaurant);
 
@@ -19,4 +22,5 @@ public interface RestaurantService {
 
     public Optional<Restaurant> getById(Long id);
 
+    public boolean isNameUsed(String name);
 }

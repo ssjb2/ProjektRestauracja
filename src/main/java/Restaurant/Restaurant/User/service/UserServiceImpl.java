@@ -1,5 +1,6 @@
 package Restaurant.Restaurant.User.service;
 
+import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import Restaurant.Restaurant.Restaurant.repository.RestaurantRepository;
 import Restaurant.Restaurant.User.Model.Role;
 import Restaurant.Restaurant.User.Model.User;
@@ -36,7 +37,12 @@ public class UserServiceImpl implements UserService{
         user.setLastName(lastname);
         user.setUsername(username);
         user.setPassword(password);
-        user.setRestaurant(restaurantRepository.findByName(restaurant));
+
+        Optional<Restaurant> tempOptRestaurant = restaurantRepository.findByName(restaurant);
+        if (tempOptRestaurant.isPresent()){
+            user.setRestaurant(tempOptRestaurant.get());
+        }
+
         List<Role> tempList= new ArrayList<Role>();
         tempList.add(roleRepository.findByName("USER"));
         user.setRoles(tempList);
@@ -74,7 +80,13 @@ public class UserServiceImpl implements UserService{
         user.setLastName(lastname);
         user.setUsername(username);
         user.setPassword(password);
-        user.setRestaurant(restaurantRepository.findByName(restaurant));
+
+
+        Optional<Restaurant> tempOptRestaurant = restaurantRepository.findByName(restaurant);
+        if (tempOptRestaurant.isPresent()){
+            user.setRestaurant(tempOptRestaurant.get());
+        }
+
         List<Role> tempList= new ArrayList<Role>();
         tempList.add(roleRepository.findByName("USER"));
         user.setRoles(tempList);
