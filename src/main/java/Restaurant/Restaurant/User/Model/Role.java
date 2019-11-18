@@ -15,7 +15,7 @@ public class Role implements Serializable {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles",cascade=CascadeType.REMOVE)
     private Set<User> users;
 
     public Role(String name) {

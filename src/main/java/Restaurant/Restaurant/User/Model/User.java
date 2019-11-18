@@ -1,14 +1,20 @@
 package Restaurant.Restaurant.User.Model;
 
-import lombok.Data;
+import Restaurant.Restaurant.Restaurant.Model.Restaurant;
+import lombok.*;
 import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
-
+@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "userr")
 public class User  {
@@ -18,26 +24,25 @@ public class User  {
     private Long id;
     private String firstName;
     private String lastName;
-    @NonNull
+    @NotNull
     private String username;
-    @NonNull
+    @NotNull
     private String password;
 
+    @ManyToOne
+    @JoinColumn(name="Restaurant_id")
+    private Restaurant restaurant;
 
-
-    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade=CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Role> roles;
 
 
-    public User(String firstName, String lastName, String username, String password) {
+    public User(String firstName, String lastName, String username, String password,Restaurant restaurant) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-
-    }
-
-    public User() {
+        this.restaurant = restaurant;
 
     }
 
@@ -48,56 +53,11 @@ public class User  {
         this.password = user.getPassword();
         this.roles = user.getRoles();
         this.id = user.getId();
+        this.restaurant = user.getRestaurant();
 
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
 
 
 }

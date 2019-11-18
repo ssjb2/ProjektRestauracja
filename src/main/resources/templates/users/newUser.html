@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -63,38 +63,37 @@
         <div class="col-xs-1" style="background-color:lightgray; height:800px"></div>
         <div class="col-xs-10 text-center" style="background-color:white; height:800px; display: table"><br>
             <div class="container" style="width: 700px; background-color: #f8f8f8; border: solid lightgray 1px">
-                <form class="form-horizontal" role="form">
-                    <h2>Dodaj użytkownika</h2>
+                <form class="form-horizontal" role="form" th:action="@{/admin/addUser}" method="post">
+                    <h2>Dodaj uzytkownika</h2>
                     <div class="form-group">
-                        <label for="Imie" class="col-sm-3 control-label">Imie</label>
+                        <label for="imie" class="col-sm-3 control-label">Imie</label>
                         <div class="col-sm-9">
-                            <input type="text" id="Imie" placeholder="Imie" class="form-control" autofocus>
+                            <input type="text" id="imie" placeholder="imie" class="form-control" autofocus name="imie">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nazwisko" class="col-sm-3 control-label">Nazwisko</label>
                         <div class="col-sm-9">
-                            <input type="text" id="Nazwisko" placeholder="Nazwisko" class="form-control">
+                            <input type="text" id="nazwisko" placeholder="nazwisko" class="form-control" name="nazwisko">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="nazwa" class="col-sm-3 control-label">Nazwa użytkonika</label>
+                        <label for="username" class="col-sm-3 control-label">Login</label>
                         <div class="col-sm-9">
-                            <input type="text" id="nazwa" placeholder="Nazwa użytkownika" class="form-control">
+                            <input type="text" id="username" placeholder="username" class="form-control" name="username">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-sm-3 control-label">Hasło</label>
+                        <label for="password" class="col-sm-3 control-label" >password</label>
                         <div class="col-sm-9">
-                            <input type="password" id="password" placeholder="Hasło" class="form-control">
+                            <input type="password" id="password" name="password" placeholder="passwors" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="restauracja" class="col-sm-3 control-label">Restauracja</label>
                         <div class="col-sm-9">
-                            <select id="restauracja" class="form-control">
-                                <option>restauracja1</option>
-                                <option>restauracja2</option>
+                            <select id="restauracja" class="form-control" name="restaurant">
+                                <option th:each="restaurant : ${restaurants}"><p th:text="${restaurant.name}"></p></option>
                             </select>
                         </div>
                     </div>

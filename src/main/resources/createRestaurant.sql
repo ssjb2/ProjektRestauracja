@@ -1,0 +1,1 @@
+INSERT INTO restaurant (address,name) values ('Rzeszow 123','Rzeszow'),('Warszawa 567','Warszawa')
