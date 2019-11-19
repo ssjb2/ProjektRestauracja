@@ -1,6 +1,6 @@
 package Restaurant.Restaurant.User.Controller;
 
-import Restaurant.Restaurant.Dish.service.Dishservice;
+import Restaurant.Restaurant.Dish.service.DishService;
 import Restaurant.Restaurant.Restaurant.service.RestaurantService;
 import Restaurant.Restaurant.User.Model.User;
 import Restaurant.Restaurant.User.repository.RoleRepository;
@@ -24,7 +24,7 @@ public class AdminController {
     UserService userService;
 
     @Autowired
-    Dishservice dishservice;
+    DishService dishservice;
 
     @Autowired
     RestaurantService restaurantService;
@@ -48,15 +48,6 @@ public class AdminController {
         model.addAttribute("users",userService.getAll());
 
         return "users/listUsers";
-    }
-
-    @GetMapping("/listDishes")
-    public String listDishes(Model model){
-
-        model.addAttribute("currentUserName", getCurrentUserName());
-        model.addAttribute("dishes",dishservice.getAll());
-
-        return "dishes/listDishes";
     }
 
     @GetMapping("/editUser/{id}")

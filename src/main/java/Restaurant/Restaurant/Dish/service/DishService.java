@@ -9,17 +9,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public interface Dishservice {
-    public void addDish(Dish Dish);
+public interface DishService {
 
     public List<Dish> getAll();
+
+    public void addDish(Dish Dish);
+
+    public void addDish(String nazwa, float cena);
 
     public Dish getByName(String Dishname);
 
     public void editDish(Dish dish);
 
+    public void editDish(Long id, String name,float price);
+
     public void removeDish(Long id);
 
     public Optional<Dish> getById(Long id);
 
+    public boolean isNameUsed(String name);
 }

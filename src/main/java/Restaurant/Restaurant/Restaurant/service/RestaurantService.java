@@ -20,6 +20,8 @@ public interface RestaurantService {
 
     public void removeRestaurant(Long id);
 
+    public void editRestaurant(Long id, String name,String address);
+
     public Optional<Restaurant> getById(Long id);
 
     public boolean isNameUsed(String name);
