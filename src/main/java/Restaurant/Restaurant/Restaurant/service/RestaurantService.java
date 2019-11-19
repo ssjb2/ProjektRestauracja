@@ -18,6 +18,8 @@ public interface RestaurantService {
 
     public void editRestaurant(Restaurant restaurant);
 
+    public void editRestaurant(Long id, String name,String address);
+
     public void removeRestaurant(Long id);
 
     public void editRestaurant(Long id, String name,String address);
