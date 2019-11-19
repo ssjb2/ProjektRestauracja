@@ -3,6 +3,9 @@ package Restaurant.Restaurant.Restaurant.service;
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import Restaurant.Restaurant.Restaurant.repository.RestaurantRepository;
 import Restaurant.Restaurant.User.Model.User;
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
+import net.bytebuddy.asm.Advice;
+import org.omg.IOP.ExceptionDetailMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RestaurantServiceImpl implements RestaurantService {
+public class RestaurantServiceImpl implements RestaurantService{
+
 
     @Autowired
     RestaurantRepository restaurantRepository;
@@ -52,6 +56,22 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public void editRestaurant(Restaurant restaurant) {
         restaurantRepository.deleteById(restaurant.getId());
+        restaurantRepository.save(restaurant);
+    }
+
+    @Override
+    public void editRestaurant(Long id, String name,String address) throws IllegalStateException
+    {
+        Restaurant restaurant = restaurantRepository.getOne(id);
+
+        //sprawdza czy nazwa isnieje, tylko jeśli jest inna niż edytowana
+        if(!restaurant.getName().equals(name)){
+            if(isNameUsed(name)){
+                throw new IllegalStateException();
+            }
+        }
+        restaurant.setName(name);
+        restaurant.setAddress(address);
         restaurantRepository.save(restaurant);
     }
 

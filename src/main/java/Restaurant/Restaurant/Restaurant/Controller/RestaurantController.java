@@ -90,17 +90,17 @@ public class RestaurantController {
                                         @PathVariable Long id,
                                         Model model){
 
-        restaurantService.removeRestaurant(id);
-        //check username is used
-        if(restaurantService.isNameUsed(name)){
-            model.addAttribute("nameIsUsed",true);
-            return new ModelAndView("redirect:/admin/restaurant/editRestaurant/{id}");
-        }
-        else{
-            restaurantService.addRestaurant(name, address);
-            model.addAttribute("update",true);
+        try {
+            restaurantService.editRestaurant(id, name, address);
+            model.addAttribute("update", true);
             return new ModelAndView("redirect:/admin/restaurant/listRestaurants");
         }
+        catch (IllegalStateException ex){
+            model.addAttribute("nameIsUsed", true);
+            return new ModelAndView("redirect:/admin/restaurant/editRestaurant/{id}");
+        }
+
+
     }
 
 
