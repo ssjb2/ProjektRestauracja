@@ -17,11 +17,6 @@ public class RestaurantServiceImpl implements RestaurantService{
     RestaurantRepository restaurantRepository;
 
     @Override
-    public void addRestaurant(Restaurant restaurant) {
-        restaurantRepository.save(restaurant);
-    }
-
-    @Override
     public void addRestaurant(String name, String address) {
         Restaurant restaurant = new Restaurant();
         restaurant.setName(name);
@@ -35,25 +30,8 @@ public class RestaurantServiceImpl implements RestaurantService{
     }
 
     @Override
-    public Restaurant getByName(String name) {
-
-        Optional<Restaurant> tempOptRestaurant = restaurantRepository.findByName(name);
-        if(tempOptRestaurant.isPresent()){
-            return tempOptRestaurant.get();
-        }
-
-        return null;
-    }
-
-    @Override
     public Optional<Restaurant> getById(Long id) {
         return restaurantRepository.findById(id);
-    }
-
-    @Override
-    public void editRestaurant(Restaurant restaurant) {
-        restaurantRepository.deleteById(restaurant.getId());
-        restaurantRepository.save(restaurant);
     }
 
     @Override

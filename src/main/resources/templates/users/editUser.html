@@ -69,7 +69,7 @@
                 </div>
 
                 <form class="form-horizontal" role="form" th:action="@{'/admin/confirmEditUser/' + ${id}}" method="post">
-                    <h2>Dodaj użytkownika</h2>
+                    <h2>Edytuj użytkownika</h2>
                     <div class="form-group">
                         <label for="imie" class="col-sm-3 control-label">Imie</label>
                         <div class="col-sm-9">
@@ -98,8 +98,7 @@
                         <label for="restauracja" class="col-sm-3 control-label">Restauracja</label>
                         <div class="col-sm-9">
                             <select id="restauracja" class="form-control" name="restaurant">
-                                <option th:each="restaurant : ${restaurants}" th:value="${restaurantModel}"><p th:text="${restaurant.name}"></p></option>
-                            </select>
+                                <option th:each="restaurant : ${restaurants}" th:value="${restaurant.name}"><p th:text="${restaurant.name}"></p></option>                            </select>
                         </div>
                     </div>
 

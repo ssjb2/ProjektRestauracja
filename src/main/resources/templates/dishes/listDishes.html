@@ -163,9 +163,20 @@ $(function () {
         <div class="col-xs-10 text-center" style="background-color:white; height:800px; display: table"><br>
             <div class="container">
                 <div class="row">
+                    <div th:if="${param.remove}" class="alert alert-success">
+                        <span>Danie zostało usunięte</span>
+                    </div>
+                    <div th:if="${param.update}" class="alert alert-success">
+                        <span>Danie zostało edytowane</span>
+                    </div>
+                    <div th:if="${param.add}" class="alert alert-success">
+                        <span>Danie zostało dodane</span>
+                    </div>
                     <h2>Lista dań</h2>
                 </div>
                 <div class="row">
+
+
                     <div style="width: 300px; margin-left: auto; margin-right: auto">
                         <ul class="list-group">
                             <li class="list-group-item" th:each="dish : ${dishes}">
@@ -175,8 +186,8 @@ $(function () {
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</span>
                                 <ul class="list-group-submenu">
-                                    <a href="#"><li class="list-group-submenu-item danger"><span class="glyphicon glyphicon-trash"></span></li></a>
-                                    <a href="#"><li class="list-group-submenu-item warning"><span class="glyphicon glyphicon-pencil"></span></li></a>
+                                    <a th:href="@{'/admin/dish/removeDish/' + ${dish.id}}"><li class="list-group-submenu-item danger"><span class="glyphicon glyphicon-trash"></span></li></a>
+                                    <a th:href="@{'/admin/dish/editDish/' + ${dish.id}}"><li class="list-group-submenu-item warning"><span class="glyphicon glyphicon-pencil"></span></li></a>
                                 </ul>
                             </li>
                         </ul>

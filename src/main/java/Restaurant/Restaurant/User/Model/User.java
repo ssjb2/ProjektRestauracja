@@ -31,7 +31,7 @@ public class User  {
     @NotNull
     private String password;
 
-    @ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="Restaurant_id")
     private Restaurant restaurant;
 

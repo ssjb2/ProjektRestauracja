@@ -27,6 +27,10 @@ public class Dish {
     @ManyToMany(mappedBy = "dishes")
     private List<OrderModel> orders;
 
+    public Dish(String name, float price) {
+        this.name = name;
+        this.price = price;
+    }
 
 
 }

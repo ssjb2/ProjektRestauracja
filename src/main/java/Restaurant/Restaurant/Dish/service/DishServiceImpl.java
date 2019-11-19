@@ -17,16 +17,11 @@ public class DishServiceImpl implements DishService{
     DishRepository dishRepository;
 
     @Override
-    public void addDish(Dish dish) {
-        dishRepository.save(dish);
-    }
-
-    @Override
-    public void addDish(String nazwa, float cena) {
+    public Dish addDish(String nazwa, float cena) {
         Dish dish = new Dish();
         dish.setName(nazwa);
         dish.setPrice(cena);
-        dishRepository.save(dish);
+        return dishRepository.save(dish);
     }
 
     @Override
@@ -53,14 +48,18 @@ public class DishServiceImpl implements DishService{
     }
 
     @Override
-    public void editDish(Dish dish) {
-        dishRepository.deleteById(dish.getId());
-        dishRepository.save(dish);
-    }
-
-    @Override
     public void editDish(Long id, String name, float price) {
+        Dish dish = dishRepository.getOne(id);
 
+        //sprawdza czy nazwa isnieje, tylko jeśli jest inna niż edytowana
+        if(!dish.getName().equals(name)){
+            if(isNameUsed(name)){
+                throw new IllegalStateException();
+            }
+        }
+        dish.setName(name);
+        dish.setPrice(price);
+        dishRepository.save(dish);
     }
 
     @Override

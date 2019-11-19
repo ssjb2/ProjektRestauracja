@@ -2,9 +2,6 @@ package Restaurant.Restaurant.Restaurant.Controller;
 
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import Restaurant.Restaurant.Restaurant.service.RestaurantService;
-import Restaurant.Restaurant.Restaurant.service.RestaurantServiceImpl;
-import Restaurant.Restaurant.User.Model.User;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

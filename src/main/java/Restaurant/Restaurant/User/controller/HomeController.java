@@ -14,18 +14,13 @@ import java.util.Collection;
 @Controller
 public class HomeController {
 
-    @GetMapping("/login")
+    @GetMapping(value={"", "/", "login"})
     public String login(Model model){
         return "login";
     }
 
     @GetMapping("/logout")
     public String logout(){
-        return "login";
-    }
-
-    @RequestMapping(value="/", method= RequestMethod.GET)
-    public String home(Model model){
         return "login";
     }
 

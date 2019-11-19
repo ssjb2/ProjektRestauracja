@@ -65,7 +65,11 @@ public class AdminController {
             model.addAttribute("lastnameModel",user.getLastName());
             model.addAttribute("usernameModel", user.getUsername());
             model.addAttribute("passwordModel",user.getPassword());
-            model.addAttribute("restaurantModel",user.getRestaurant().getName());
+            System.out.println(user.getRestaurant()!=null);
+            if(user.getRestaurant()!=null){
+                model.addAttribute("restaurantModel",user.getRestaurant().getName());
+            }
+
             model.addAttribute("ajdi",user.getId());
         }
 
@@ -80,17 +84,14 @@ public class AdminController {
                                         @RequestParam("restaurant") String restaurant,
                                         @PathVariable Long id,
                                         Model model){
-
-        userService.removeUser(id);
-        //check username is used
-        if(userService.isUsernameUsed(username)){
-            model.addAttribute("usernameIsUsed",true);
-            return new ModelAndView("redirect:/admin/editUser/{id}");
-        }
-        else{
-            userService.addUser(imie, nazwisko, username, password, restaurant);
-            model.addAttribute("update",true);
+        try {
+            userService.editUser(id, imie, nazwisko, username, password, restaurant);
+            model.addAttribute("update", true);
             return new ModelAndView("redirect:/admin/listUsers");
+        }
+        catch (IllegalStateException ex){
+            model.addAttribute("usernameIsUsed", true);
+            return new ModelAndView("redirect:/admin/editUser/{id}");
         }
     }
 

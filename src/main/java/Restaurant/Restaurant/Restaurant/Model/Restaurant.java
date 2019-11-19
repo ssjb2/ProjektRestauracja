@@ -2,7 +2,6 @@ package Restaurant.Restaurant.Restaurant.Model;
 
 
 import lombok.Data;
-import java.io.Serializable;
 import javax.persistence.*;
 
 
