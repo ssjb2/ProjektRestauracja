@@ -1,4 +1,4 @@
-package Restaurant.Restaurant.User.Controller;
+package Restaurant.Restaurant.User.controller;
 
 import Restaurant.Restaurant.Dish.service.DishService;
 import Restaurant.Restaurant.Restaurant.service.RestaurantService;
@@ -24,7 +24,7 @@ public class AdminController {
     UserService userService;
 
     @Autowired
-    DishService dishservice;
+    DishService dishService;
 
     @Autowired
     RestaurantService restaurantService;
@@ -69,11 +69,10 @@ public class AdminController {
             if(user.getRestaurant()!=null){
                 model.addAttribute("restaurantModel",user.getRestaurant().getName());
             }
-
             model.addAttribute("ajdi",user.getId());
         }
 
-        return "/users/editUser";
+        return "users/editUser";
     }
 
     @PostMapping("/confirmEditUser/{id}")
@@ -84,6 +83,7 @@ public class AdminController {
                                         @RequestParam("restaurant") String restaurant,
                                         @PathVariable Long id,
                                         Model model){
+
         try {
             userService.editUser(id, imie, nazwisko, username, password, restaurant);
             model.addAttribute("update", true);
@@ -101,12 +101,11 @@ public class AdminController {
         model.addAttribute("currentUserName", getCurrentUserName());
         model.addAttribute("restaurants",restaurantService.getAll());
 
-        return "/users/newUser";
+        return "users/newUser";
     }
 
 
     @PostMapping("/confirmAddUser")
-    @ResponseBody
     public ModelAndView addUser(@RequestParam("imie") String imie,
                                 @RequestParam("nazwisko") String nazwisko,
                                 @RequestParam("username") String username,

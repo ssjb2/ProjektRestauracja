@@ -19,28 +19,36 @@
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Restaurant</a>
+                        <a class="navbar-brand" href="/admin/homepage">Restaurant</a>
                     </div>
+
                     <ul class="nav navbar-nav">
 
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Użytkownicy
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">option1</a></li>
-                                <li><a href="">option2</a></li>
+                                <li><a href="/admin/newUser">Dodaj</a></li>
+                                <li><a href="/admin/listUsers">Lista</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options2
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Restauracje
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">option11</a></li>
-                                <li><a href="">option22</a></li>
+                                <li><a href="/admin/restaurant/newRestaurant">Dodaj</a></li>
+                                <li><a href="/admin/restaurant/listRestaurants">Lista</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dania
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/dish/newDish">Dodaj</a></li>
+                                <li><a href="/admin/dish/listDishes">Lista</a></li>
                             </ul>
                         </li>
                     </ul>
-
                     <form method="GET" th:action="@{/logout}" class="navbar-form navbar-right">
 
                         <input type="hidden">
@@ -54,8 +62,8 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-1" style="background-color:lightgray; height:800px"></div>
-        <div class="col-xs-10 text-center" style="background-color:white; height:800px; display: table"><br>
+        <div class="col-xs-1" style="background-color:lightgray; height:95vh"></div>
+        <div class="col-xs-10 text-center" style="background-color:white; height:95vh; display: table"><br>
 
             <div th:if="${param.nameIsUsed}" class="alert alert-error align-center">
                 <span>Nazwa jest zajęta</span>
@@ -86,7 +94,7 @@
             </div>
 
         </div>
-        <div class="col-xs-1" style="background-color:lightgray; height:800px"></div>
+        <div class="col-xs-1" style="background-color:lightgray; height:95vh"></div>
     </div>
 </div>
 </body>

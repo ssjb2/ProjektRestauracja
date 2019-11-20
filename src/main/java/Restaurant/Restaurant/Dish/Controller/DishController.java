@@ -4,6 +4,7 @@ package Restaurant.Restaurant.Dish.Controller;
 import Restaurant.Restaurant.Dish.Model.Dish;
 import Restaurant.Restaurant.Dish.service.DishService;
 import Restaurant.Restaurant.Dish.service.DishServiceImpl;
+import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -34,7 +35,7 @@ public class DishController {
     @GetMapping("/newDish")
     public String newRestaurant(Model model){
         model.addAttribute("currentUserName", getCurrentUserName());
-        return "/dishes/newDish";
+        return "dishes/newDish";
     }
 
     @PostMapping("/confirmAddDish")
@@ -79,7 +80,7 @@ public class DishController {
             model.addAttribute("price",dish.getPrice());
             model.addAttribute("ajdi",dish.getId());
         }
-        return "/dishes/editDish";
+        return "dishes/editDish";
     }
 
     @PostMapping("/confirmEditDish/{id}")
@@ -100,6 +101,7 @@ public class DishController {
 
     }
 
+
     private String getCurrentUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -110,6 +112,8 @@ public class DishController {
             return "default";
         }
     }
+
+
 
 
 

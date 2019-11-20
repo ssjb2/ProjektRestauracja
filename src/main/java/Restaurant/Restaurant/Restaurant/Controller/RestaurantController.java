@@ -32,7 +32,7 @@ public class RestaurantController {
     @GetMapping("/newRestaurant")
     public String newRestaurant(Model model){
         model.addAttribute("currentUserName", getCurrentUserName());
-        return "/restaurants/newRestaurant";
+        return "restaurants/newRestaurant";
     }
 
     @PostMapping("/confirmAddRestaurant")
@@ -77,7 +77,7 @@ public class RestaurantController {
             model.addAttribute("address",restaurant.getAddress());
             model.addAttribute("ajdi",restaurant.getId());
         }
-        return "/restaurants/editRestaurant";
+        return "restaurants/editRestaurant";
     }
 
 
