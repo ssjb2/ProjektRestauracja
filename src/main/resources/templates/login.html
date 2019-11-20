@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head >
     <title>Please Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,13 +32,11 @@
         }
     </style>
 </head>
-
-</head>
 <body>
 <div class="login-form">
     <form name="f" th:action="@{/login}" method="post" class="p-3 mb-2 bg-light text-dark align-center">
         <h2 class="text-center">Zaloguj</h2>
-        <div th:if="${param.error}" class="alert alert-error align-center">
+        <div th:if="${param.error}" class="alert alert-danger align-center">
             Nieprawidłowa nazwa użytkownika lub hasło
         </div>
         <div th:if="${param.logout}" class="alert alert-success">
@@ -63,6 +61,5 @@
     </form>
 
 </div>
-
 </body>
 </html>
