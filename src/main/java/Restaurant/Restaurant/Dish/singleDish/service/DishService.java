@@ -1,8 +1,7 @@
-package Restaurant.Restaurant.Dish.service;
+package Restaurant.Restaurant.Dish.singleDish.service;
 
-import Restaurant.Restaurant.Dish.Model.Dish;
+import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
 
-import Restaurant.Restaurant.User.Model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

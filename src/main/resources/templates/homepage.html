@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <title>Restaurant</title>
     <style>
         #fancy-list-group .list-group li.list-group-item {
@@ -182,6 +183,34 @@
             </div>
             <div class="clearfix"><br /></div>
             <div class="container" style="width: 700px">
+
+                <div>
+
+
+
+
+                    <!--<div th:each="dish : ${dishes}">-->
+                    <!--<span th:text="${dish.name}"></span>-->
+                    <!--<button class="addButton" type="button">Dodaj</button>-->
+                    <!--</div>-->
+
+                    <!--<fieldset id="group1">-->
+                    <!--<span th:each="item : ${dishes}">-->
+                    <!--<input type="radio" th:name="nazwa" value="${item.name}" />-->
+                    <!--<p th:text="${item.name}"></p>-->
+                    <!--</span>-->
+                    <!--</fieldset>-->
+                    <!--<button type="submit">potwierdź</button>-->
+                    </form>
+
+
+
+
+
+
+
+
+                </div>
                 <div id="fancy-list-group">
                     <div class="row">
                         <div class="list-group">
@@ -190,6 +219,9 @@
                                     <div class="list-group-item-addon">
                                         <span class="glyphicon glyphicon-list-alt"></span>
                                     </div>
+
+
+
                                     <div class="list-group-item-content">
                                         <h4 class="list-group-item-heading">Zamówienia</h4>
                                         <p class="list-group-item-text">Zarządzaj zamówieniami</p>
@@ -197,7 +229,7 @@
                                     <div class="list-group-item-controls">
                                         <span class="label">Controls</span>
                                         <div class="btn-group">
-                                            <a href="#" title="Add"><span class="glyphicon glyphicon-plus"></span></a>
+                                            <a href="newOrder" title="Add"><span class="glyphicon glyphicon-plus"></span></a>
                                             <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
                                         </div>
                                     </div>
@@ -212,4 +244,19 @@
     </div>
 </div>
 </body>
+
+<script type="text/javascript" async>
+
+    var addButtons = document.getElementsByClassName('addButton')
+    console.log(addButtons);
+
+    for (var i = 0; i<addButtons.length; i++){
+        var button = addButtons[i]
+        button.addEventListener('click', function(event){
+            var buttonClicked = event.target
+        })
+    }
+</script>
+
+
 </html>

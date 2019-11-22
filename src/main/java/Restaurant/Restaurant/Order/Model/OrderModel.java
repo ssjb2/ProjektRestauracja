@@ -1,18 +1,15 @@
 package Restaurant.Restaurant.Order.Model;
 
-import Restaurant.Restaurant.Dish.Model.Dish;
+import Restaurant.Restaurant.Dish.Product.model.Product;
+import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
-import Restaurant.Restaurant.User.Model.Role;
 import Restaurant.Restaurant.User.Model.User;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
-
-import static javax.persistence.CascadeType.ALL;
 
 @Data
 @Getter
@@ -31,17 +28,26 @@ public class OrderModel {
     @JoinColumn(name="Restaurant_id")
     private Restaurant restaurant;
 
-    private LocalDate date;
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name="User_id")
     private User user;
 
     @ManyToMany(cascade = { CascadeType.ALL })
-    private List<Dish> dishes;
+    private List<Product> products;
+
+    private String status;
 
     private float price;
 
+    public void addDish(Product product){
+        this.products.add(product);
+    }
+
+    public void removeDish(Product product){
+        this.products.remove(product);
+    }
 
 
 }

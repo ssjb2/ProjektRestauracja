@@ -1,6 +1,6 @@
 package Restaurant.Restaurant.User.controller;
 
-import Restaurant.Restaurant.Dish.service.DishService;
+import Restaurant.Restaurant.Dish.singleDish.service.DishService;
 import Restaurant.Restaurant.Restaurant.service.RestaurantService;
 import Restaurant.Restaurant.User.Model.User;
 import Restaurant.Restaurant.User.repository.RoleRepository;

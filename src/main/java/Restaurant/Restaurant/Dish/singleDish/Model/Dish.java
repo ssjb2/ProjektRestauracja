@@ -1,13 +1,11 @@
-package Restaurant.Restaurant.Dish.Model;
+package Restaurant.Restaurant.Dish.singleDish.Model;
 
 
 import Restaurant.Restaurant.Order.Model.OrderModel;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Getter
@@ -24,13 +22,11 @@ public class Dish {
     private String name;
     private float price;
 
-    @ManyToMany(mappedBy = "dishes")
-    private List<OrderModel> orders;
+//    @ManyToMany(mappedBy = "dishes")
+//    private List<OrderModel> orders;
 
     public Dish(String name, float price) {
         this.name = name;
         this.price = price;
     }
-
-
 }

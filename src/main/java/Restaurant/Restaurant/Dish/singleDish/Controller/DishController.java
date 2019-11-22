@@ -1,10 +1,8 @@
-package Restaurant.Restaurant.Dish.Controller;
+package Restaurant.Restaurant.Dish.singleDish.Controller;
 
 
-import Restaurant.Restaurant.Dish.Model.Dish;
-import Restaurant.Restaurant.Dish.service.DishService;
-import Restaurant.Restaurant.Dish.service.DishServiceImpl;
-import Restaurant.Restaurant.Restaurant.Model.Restaurant;
+import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
+import Restaurant.Restaurant.Dish.singleDish.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

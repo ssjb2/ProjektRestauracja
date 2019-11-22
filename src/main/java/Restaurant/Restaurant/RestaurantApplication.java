@@ -1,10 +1,10 @@
 package Restaurant.Restaurant;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import static org.springframework.boot.SpringApplication.run;
 
 @SpringBootApplication
 @ComponentScan("Restaurant.Restaurant.User")
@@ -12,12 +12,12 @@ import static org.springframework.boot.SpringApplication.run;
 @ComponentScan("Restaurant.Restaurant.Restaurant")
 @ComponentScan("Restaurant.Restaurant.Config")
 @ComponentScan("Restaurant.Restaurant.Order")
+@ComponentScan("Restaurant.Restaurant.Cart")
 @EnableWebMvc
 public class RestaurantApplication {
 
+
 	public static void main(String[] args) {
-
-		run(RestaurantApplication.class, args);
+		SpringApplication.run(RestaurantApplication.class, args);
 	}
-
 }

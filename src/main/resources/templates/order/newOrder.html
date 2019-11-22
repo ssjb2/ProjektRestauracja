@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form method="POST" th:action="@{/user/createOrder}">
+
+
+
+
+        <!--<div id="singleProduct" th:each="dish : ${listAllDishes}">-->
+        <!--<span th:text="${dish.name}"></span>-->
+        <!--<input type="submit" name="nazwa" th:id="${dish.name}" th:value="${dish.name}">Dodaj</input>-->
+        <!--</div>-->
+
+        <h3>Products Page</h3>
+        <table cellpadding="2" cellspacing="2" border="1">
+            <tr>
+
+                <th>Name</th>
+                <th>Price</th>
+                <th>Add</th>
+
+            </tr>
+
+            <tr th:each="dish : ${listAllDishes}">
+
+                <td th:text="${dish.name}"></td>
+                <td th:text="${dish.price}"></td>
+                <td align="center">
+                    <a th:href="@{'addProduct/' + ${dish.id}}" >Add</a>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+</div>
+
+
+
+</body>
+</html>

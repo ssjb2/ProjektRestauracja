@@ -2,8 +2,6 @@ package Restaurant.Restaurant.Restaurant.service;
 
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import Restaurant.Restaurant.Restaurant.repository.RestaurantRepository;
-import Restaurant.Restaurant.User.Model.User;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +21,22 @@ public class RestaurantServiceImpl implements RestaurantService{
         restaurant.setAddress(address);
         restaurantRepository.save(restaurant);
     }
+    public Restaurant addRestaurant(Restaurant restaurant){
+        restaurantRepository.save(restaurant);
+        return restaurant;
+    }
+
+    @Override
+    public Restaurant getByName(String restauracja) {
+        //TODO
+        return null;
+    }
 
     @Override
     public List<Restaurant> getAll() {
         return restaurantRepository.findAll();
     }
+
 
     @Override
     public Optional<Restaurant> getById(Long id) {
@@ -66,4 +75,5 @@ public class RestaurantServiceImpl implements RestaurantService{
         }
 
     }
+
 }
