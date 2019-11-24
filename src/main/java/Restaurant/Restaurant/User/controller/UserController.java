@@ -1,5 +1,7 @@
-package Restaurant.Restaurant.User.controller;
+package Restaurant.Restaurant.User.Controller;
 
+import Restaurant.Restaurant.DailyReport.Model.DailyReport;
+import Restaurant.Restaurant.DailyReport.Service.DailyReportService;
 import Restaurant.Restaurant.Dish.Product.model.Product;
 import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
 import Restaurant.Restaurant.Dish.singleDish.service.DishService;
@@ -18,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.criteria.Order;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -41,6 +44,9 @@ public class UserController {
     @Autowired
     DishService dishService;
 
+    @Autowired
+    DailyReportService dailyReportService;
+
 
 
     @GetMapping("/homepage")
@@ -63,7 +69,7 @@ public class UserController {
         //add Dishes to model
         List<Dish> dishes = dishService.getAll();
         model.addAttribute("dishes",dishes);
-        System.out.println(dishes);
+
 
 //        Restaurant finalActRestaurant = actRestaurant;
 //        orderService.getAll().stream().filter(p->p.getRestaurant().getName().equals(finalActRestaurant.getName())).collect(Collectors.toList());
@@ -133,6 +139,7 @@ public class UserController {
 
         model.addAttribute("listAllDishes", listAllDishes);
 
+
         return "order/newOrder";
     }
 
@@ -146,7 +153,6 @@ public class UserController {
         session.setAttribute("cart", cart);
         session.setAttribute("total",this.calcTotalPrice((List<Product>) session.getAttribute("cart")));
         return new ModelAndView("redirect:/user/newOrder");
-
 
     }
 
@@ -170,12 +176,31 @@ public class UserController {
         order.setPrice(this.calcTotalPrice(order.getProducts()));
         order.setStatus("nowe");
 
+        this.addOrderToDailyReport(order);
         orderService.addOrder(order);
+
+
         session.removeAttribute("cart");
         session.removeAttribute("total");
-
         model.addAttribute("add",true);
+
+        System.out.println(dailyReportService.getDailyReportByDay(order.getDate()).getDish_price());
+
         return new ModelAndView("redirect:/user/homepage");
+    }
+
+    private void addOrderToDailyReport(OrderModel order){
+        DailyReport currentDay = dailyReportService.getDailyReportByDay(order.getDate());
+        if(currentDay==null){   //jeśli nie ma raportu z dzisija, stwórz go
+            currentDay = new DailyReport();
+            currentDay.setDate(order.getDate().toLocalDate());
+            currentDay.setUser(order.getUser());
+        }
+
+        currentDay.addOrder(order);
+        dailyReportService.addDailyReport(currentDay);
+        order.setDailyReport(currentDay);
+
     }
 
     @GetMapping("orderList/{restaurant}")

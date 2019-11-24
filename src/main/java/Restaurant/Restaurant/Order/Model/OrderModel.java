@@ -1,13 +1,11 @@
 package Restaurant.Restaurant.Order.Model;
 
+import Restaurant.Restaurant.DailyReport.Model.DailyReport;
 import Restaurant.Restaurant.Dish.Product.model.Product;
-import Restaurant.Restaurant.Dish.singleDish.Model.Dish;
 import Restaurant.Restaurant.Restaurant.Model.Restaurant;
 import Restaurant.Restaurant.User.Model.User;
 import lombok.*;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -37,11 +35,16 @@ public class OrderModel {
     @ManyToMany(cascade = { CascadeType.ALL })
     private List<Product> products;
 
+    @ManyToOne
+    @JoinColumn(name = "daily_report_id")
+    private DailyReport dailyReport;
+
+
     private String status;
 
     private float price;
 
-    public void addDish(Product product){
+    public void addProduct(Product product){
         this.products.add(product);
     }
 

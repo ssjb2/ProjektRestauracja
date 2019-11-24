@@ -22,8 +22,6 @@ public class Dish {
     private String name;
     private float price;
 
-//    @ManyToMany(mappedBy = "dishes")
-//    private List<OrderModel> orders;
 
     public Dish(String name, float price) {
         this.name = name;
