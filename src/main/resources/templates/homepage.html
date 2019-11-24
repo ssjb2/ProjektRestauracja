@@ -12,120 +12,136 @@
 
     <title>Restaurant</title>
     <style>
+	.notice {
+    padding: 15px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+	border-right: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+            box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+}
+.notice-sm {
+    padding: 10px;
+    font-size: 80%;
+}
+
+
         #fancy-list-group .list-group li.list-group-item {
-            margin-bottom: 10px;
-            padding: 0;
-            border: 0;
-            position: relative;
-            display: table;
-            border-collapse: separate;
+          margin-bottom: 10px;
+          padding: 0;
+          border: 0;
+          position: relative;
+          display: table;
+          border-collapse: separate;
         }
         #fancy-list-group .list-group li.list-group-item .list-group-item-addon {
-            display: table-cell;
-            width: 1%;
-            white-space: nowrap;
-            vertical-align: middle;
-            padding: 10px 20px;
-            height: 100px;
-            line-height: 1;
-            text-align: center;
-            border-right: 0;
-            border-top-left-radius : 4px;
-            border-bottom-left-radius: 4px;
-            border: 1px solid #444;
-            background-color: #444;
+          display: table-cell;
+          width: 1%;
+          white-space: nowrap;
+          vertical-align: middle;
+          padding: 10px 20px;
+          height: 100px;
+          line-height: 1;
+          text-align: center;
+          border-right: 0;
+          border-top-left-radius : 4px;
+          border-bottom-left-radius: 4px;
+          border: 1px solid #444;
+          background-color: #444;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-success .list-group-item-addon {
-            border: 1px solid #3c763d;
-            background-color: #3c763d;
+          border: 1px solid #3c763d;
+          background-color: #3c763d;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-info .list-group-item-addon {
-            border: 1px solid #31708f;
-            background-color: #31708f;
+          border: 1px solid #31708f;
+          background-color: #31708f;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-warning .list-group-item-addon {
-            border: 1px solid #8a6d3b;
-            background-color: #8a6d3b;
+          border: 1px solid #8a6d3b;
+          background-color: #8a6d3b;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-danger .list-group-item-addon {
-            border: 1px solid #a94442;
-            background-color: #a94442;
+          border: 1px solid #a94442;
+          background-color: #a94442;
         }
         #fancy-list-group .list-group li.list-group-item .list-group-item-addon span {
-            font-size: 40px;
-            font-weight: normal;
-            color: #fff;
+          font-size: 40px;
+          font-weight: normal;
+          color: #fff;
         }
         #fancy-list-group .list-group li.list-group-item .list-group-item-content {
-            display: table-cell;
-            border-radius: 0;
-            position: relative;
-            z-index: 2;
-            float: left;
-            width: 100%;
-            height: 100px;
-            margin-bottom: 0;
-            border: 1px solid #444;
-            border-right: 0;
-            padding: 25px;
+          display: table-cell;
+          border-radius: 0;
+          position: relative;
+          z-index: 2;
+          float: left;
+          width: 100%;
+          height: 100px;
+          margin-bottom: 0;
+          border: 1px solid #444;
+          border-right: 0;
+          padding: 25px;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-success .list-group-item-content {
-            border-color: #3c763d;
+          border-color: #3c763d;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-info .list-group-item-content {
-            border-color: #31708f;
+          border-color: #31708f;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-warning .list-group-item-content {
-            border-color: #8a6d3b;
+          border-color: #8a6d3b;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-danger .list-group-item-content {
-            border-color: #a94442;
+          border-color: #a94442;
         }
         #fancy-list-group .list-group li.list-group-item .list-group-item-controls {
-            display: table-cell;
-            width: 1%;
-            white-space: nowrap;
-            vertical-align: middle;
-            padding: 0 10px;
-            line-height: 1;
-            text-align: center;
-            border-left: 0;
-            background-color: #444;
-            border: 1px solid #444;
-            border-top-right-radius : 4px;
-            border-bottom-right-radius: 4px;
+          display: table-cell;
+          width: 1%;
+          white-space: nowrap;
+          vertical-align: middle;
+          padding: 0 10px;
+          line-height: 1;
+          text-align: center;
+          border-left: 0;
+          background-color: #444;
+          border: 1px solid #444;
+          border-top-right-radius : 4px;
+          border-bottom-right-radius: 4px;
         }
         #fancy-list-group .list-group li.list-group-item .list-group-item-controls .label {
-            display: block;
-            text-align: center;
-            margin-bottom: 10px;
-            background-color: #fff;
-            color: #444;
-            text-transform: uppercase;
-            font-weight: normal;
+          display: block;
+          text-align: center;
+          margin-bottom: 10px;
+          background-color: #fff;
+          color: #444;
+          text-transform: uppercase;
+          font-weight: normal;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-success .list-group-item-controls .label {
-            background-color: #3c763d;
-            color: #fff;
+          background-color: #3c763d;
+          color: #fff;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-info .list-group-item-controls .label {
-            background-color: #31708f;
-            color: #fff;
+          background-color: #31708f;
+          color: #fff;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-warning .list-group-item-controls .label {
-            background-color: #8a6d3b;
-            color: #fff;
+          background-color: #8a6d3b;
+          color: #fff;
         }
         #fancy-list-group .list-group li.list-group-item.list-group-item-danger .list-group-item-controls .label {
-            background-color: #a94442;
-            color: #fff;
+          background-color: #a94442;
+          color: #fff;
         }
         #fancy-list-group .list-group li.list-group-item .list-group-item-controls a {
-            color : #fff;
-            font-size: 20px;
-            margin: 0 3px;
+          color : #fff;
+          font-size: 20px;
+          margin: 0 3px;
         }
-    </style>
+	</style>
 </head>
 <body>
 
@@ -178,8 +194,10 @@
         <div class="col-xs-1" style="background-color:lightgray; height: 95vh"></div>
 
         <div class="col-xs-10 text-center" style="background-color:white; height: 95vh; display: table">
-            <div>
-                Aktualna restauracja: <span th:text="${currentUserRestaurant}">Użytkownik nie jest przypisany do żadnej restauracji</span>
+            <div class="container" style="width:500px">
+                <div class="notice notice-sm">
+                    Aktualna restauracja: <strong><span th:text="${currentUserRestaurant}">Użytkownik nie jest przypisany do żadnej restauracji</span></strong>
+                </div>
             </div>
             <div class="clearfix"><br /></div>
             <div class="container" style="width: 700px">
@@ -247,16 +265,16 @@
 
 <script type="text/javascript" async>
 
-    var addButtons = document.getElementsByClassName('addButton')
-    console.log(addButtons);
+        var addButtons = document.getElementsByClassName('addButton')
+        console.log(addButtons);
 
-    for (var i = 0; i<addButtons.length; i++){
-        var button = addButtons[i]
-        button.addEventListener('click', function(event){
-            var buttonClicked = event.target
-        })
-    }
-</script>
+        for (var i = 0; i<addButtons.length; i++){
+            var button = addButtons[i]
+            button.addEventListener('click', function(event){
+                var buttonClicked = event.target
+            })
+        }
+    </script>
 
 
 </html>

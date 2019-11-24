@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -156,6 +155,10 @@ public class UserController {
         OrderModel order = new OrderModel();
 
         Optional<User> user = userService.getByUsername(this.getUsername());
+
+        if(session.getAttribute("cart")==null){
+            return new ModelAndView("redirect:/user/newOrder");
+        }
 
         if(user.isPresent()){
             order.setUser(user.get());
