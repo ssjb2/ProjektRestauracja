@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -86,7 +87,8 @@ public class UserController {
 
     @RequestMapping(value = "addProduct/{id}", method = RequestMethod.GET)
     public String addProduct(@PathVariable("id") String id,
-                             HttpSession session){
+                             HttpSession session,
+                             Model model){
 
         OrderModel order = new OrderModel();
         if (session.getAttribute("cart") == null) {
@@ -123,25 +125,32 @@ public class UserController {
         }
 
         session.setAttribute("total",this.calcTotalPrice((List<Product>) session.getAttribute("cart")));
+        model.addAttribute("currentUserName", this.getUsername());
 
-        return "order/cart";
+        List<Dish> listAllDishes = dishService.getAll();
+
+
+        model.addAttribute("listAllDishes", listAllDishes);
+
+        return "order/newOrder";
     }
 
     @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
-    public String remove(@PathVariable("id") String id, HttpSession session) {
+    public ModelAndView remove(@PathVariable("id") String id, HttpSession session) {
 
-        Dish dish = new Dish();
+
         List<Product> cart = (List<Product>) session.getAttribute("cart");
         int index = this.exists(id, cart);
         cart.remove(index);
         session.setAttribute("cart", cart);
         session.setAttribute("total",this.calcTotalPrice((List<Product>) session.getAttribute("cart")));
-        return "order/cart";
+        return new ModelAndView("redirect:/user/newOrder");
+
 
     }
 
     @GetMapping("confirmAddOrder")
-    public String confirmAddOrder(HttpSession session,Model model){
+    public ModelAndView confirmAddOrder(HttpSession session,Model model){
         OrderModel order = new OrderModel();
 
         Optional<User> user = userService.getByUsername(this.getUsername());
@@ -161,7 +170,7 @@ public class UserController {
         session.removeAttribute("total");
 
         model.addAttribute("add",true);
-        return "homepage";
+        return new ModelAndView("redirect:/user/homepage");
     }
 
     private float calcTotalPrice(List<Product> products){
