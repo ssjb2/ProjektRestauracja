@@ -18,10 +18,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -172,6 +174,66 @@ public class UserController {
         model.addAttribute("add",true);
         return new ModelAndView("redirect:/user/homepage");
     }
+
+    @GetMapping("orderList/{restaurant}")
+    public String orderList(@PathVariable String restaurant,
+                            Model model){
+
+        Restaurant actRestaurant = null;
+        Optional<Restaurant> OptActRestaurant = restaurantService.getByName(restaurant);
+        if(OptActRestaurant.isPresent()){
+            actRestaurant = OptActRestaurant.get();
+        }
+
+
+        List<OrderModel> actRestaurantOrders = orderService.getRestaurantOrders(actRestaurant);
+
+        model.addAttribute("currentOrdersActive", actRestaurantOrders.stream().filter(p -> p.getStatus().equals("nowe")).collect(Collectors.toList()));
+        model.addAttribute("currentOrdersFinished", actRestaurantOrders.stream().filter(p -> p.getStatus().equals("zakonczone")).collect(Collectors.toList()));
+
+        return "order/orderList";
+    }
+
+    @GetMapping("selectOrder/{id}")
+    public ModelAndView selectOrder(@PathVariable Long id,
+                                    Model model,
+                                    HttpSession session){
+        OrderModel actOrder =null;
+        Optional<OrderModel> OptActOrder = orderService.getOrderById(id);
+
+        if(OptActOrder.isPresent()){
+            actOrder = OptActOrder.get();
+        }
+
+        System.out.println(actOrder);
+        model.addAttribute("restaurant", userService.getByUsername(this.getUsername()).get().getRestaurant().getName());
+
+        List<Product> products = actOrder.getProducts();
+        session.setAttribute("currentSelectedOrder", actOrder);
+        session.setAttribute("currentSelectedProductsInOrder", products);
+        session.setAttribute("total",actOrder.getPrice());
+        model.addAttribute("edit",true);
+
+        return new ModelAndView("redirect:/user/orderList/{restaurant}");
+    }
+
+    @GetMapping("finishOrder")
+    public ModelAndView finishOrder(
+            Model model,
+            HttpSession session){
+
+        OrderModel orderToFinish = (OrderModel) session.getAttribute("currentSelectedOrder");
+
+
+        orderService.finish(orderToFinish.getId());
+
+
+        model.addAttribute("restaurant", userService.getByUsername(this.getUsername()).get().getRestaurant().getName());
+
+        return new ModelAndView("redirect:/user/orderList/{restaurant}");
+    }
+
+
 
     private float calcTotalPrice(List<Product> products){
         float sum=0;

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul>
+    Zamówienia w trakcie realizacji
+    <li th:each="order : ${currentOrdersActive}">
+        <span th:text="${order.date.hour} +':'+ ${order.date.minute}"></span>
+        <a th:href="@{'/user/selectOrder/' + ${order.id}}">Pokaż</a>
+    </li>
+
+</ul>
+
+<ul>
+    Zamówienia Zakończone
+    <li th:each="order : ${currentOrdersFinished}">
+        <span th:text="${order.date.hour} +':'+ ${order.date.minute}"></span>
+    </li>
+
+</ul>
+
+
+<div  th:if="${param.edit}">
+    <table>
+
+        <tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Ilość</th>
+            <th>Suma</th>
+        </tr>
+
+
+
+
+        <tr th:each="product : ${session.currentSelectedProductsInOrder}">
+            <td th:text="${product.dish.name}"></td>
+            <td th:text="${product.dish.price} + ' zł'"></td>
+            <td th:text="${product.quantity}"></td>
+            <td th:text="${product.price} + ' zł'"></td>
+        </tr>
+
+        <tr>
+            <td colspan="6" align="right">Suma</td>
+            <td th:text="${session.total} + ' zł'">total</td>
+        </tr>
+    </table>
+    <br>
+    <a href="/user/finishOrder">Zakończ zamówienie</a>
+
+</div>
+
+</body>
+</html>

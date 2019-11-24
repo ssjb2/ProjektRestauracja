@@ -25,5 +25,5 @@ public interface RestaurantService {
 
     Restaurant addRestaurant(Restaurant restaurant);
 
-    Restaurant getByName(String restauracja);
+    Optional<Restaurant> getByName(String restauracja);
 }
