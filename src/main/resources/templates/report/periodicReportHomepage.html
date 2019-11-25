@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+tEST PERIODIC REPORT
+<form th:action="@{/admin/report/getReportByDate}" method="post">
+    Od: <input type="date" name="begin" value="2019-01-10">
+    Do: <input type="date" name="end" value="2019-01-10">
+    <button type="submit" class="btn btn-primary btn-block">Pobierz</button>
+</form>
+
+
+<div th:if="${listReports}">
+    <div th:each="report : ${listReports}">
+        <a th:href="@{'/admin/report/getDailyReport/' + ${report.id}}" th:text="${report.date}"></a>
+        <span th:text="${report.profits} + ' zł'"></span>
+    </div>
+
+    <div>
+        <span>Sztuki:</span>
+        <div th:each="map : ${sumReport.dish_quantity}">
+            <span th:text="${map.key}">ww</span>
+            <span th:text="${map.value}">ddd</span>
+        </div>
+        <br> <br>
+        <span>Zyski:</span>
+        <div th:each="map : ${sumReport.dish_price}">
+
+            <span th:text="${map.key}">ww</span> :
+            <span th:text="${map.value}">ddd</span> zł
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

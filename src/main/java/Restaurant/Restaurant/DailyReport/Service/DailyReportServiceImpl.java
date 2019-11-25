@@ -5,6 +5,7 @@ import Restaurant.Restaurant.DailyReport.Repository.DailyReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -23,11 +24,17 @@ public class DailyReportServiceImpl implements DailyReportService {
 
     @Override
     public DailyReport getDailyReportByDay(LocalDateTime localDateTime)  {
-
-        LocalDateTime begin = LocalDateTime.of(localDateTime.toLocalDate(),LocalTime.MIN);
-        LocalDateTime end = LocalDateTime.of(localDateTime.toLocalDate(),LocalTime.MAX);
-
         return dailyReportRepository.findByDate(localDateTime.toLocalDate());
+    }
+
+
+    @Override
+    public List<DailyReport> getDailyReportBetween(LocalDate beginTemp, LocalDate endTemp) {
+
+        LocalDateTime begin = LocalDateTime.of(beginTemp,LocalTime.MIN);
+        LocalDateTime end = LocalDateTime.of(endTemp,LocalTime.MAX);
+
+        return dailyReportRepository.findByDateBetween(beginTemp, endTemp);
     }
 
     @Override

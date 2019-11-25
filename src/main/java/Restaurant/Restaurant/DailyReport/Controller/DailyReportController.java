@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ public class DailyReportController {
     DailyReportService dailyReportService;
 
     @GetMapping("/dailyReportPage")
-    public String daliyReportPage(Model model) {
+    public String daliyReportPage(Model model){
 
         model.addAttribute("allDailyReports", dailyReportService.getAll());
 
@@ -28,18 +29,21 @@ public class DailyReportController {
 
     @GetMapping("/getDailyReport/{id}")
     public String getDailyReport(@PathVariable Long id,
-                                 Model model) {
+                                 Model model){
 
         Optional<DailyReport> optDailyReport = dailyReportService.getDailyReportById(id);
         DailyReport currentDailyReport = null;
 
-        if (optDailyReport.isPresent()) {
+        if(optDailyReport.isPresent()){
             currentDailyReport = optDailyReport.get();
-            model.addAttribute("dailyReport", currentDailyReport);
+            model.addAttribute("dailyReport",currentDailyReport);
         }
-
-        return "report/showDailyReport";
-
+        model.addAttribute("allDailyReports", dailyReportService.getAll());
+        return "report/daily_homepage";
 
     }
+
+
+
+
 }

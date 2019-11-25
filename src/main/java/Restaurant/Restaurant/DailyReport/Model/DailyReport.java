@@ -15,9 +15,9 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@Entity
 @Getter
 @Setter
+@Entity
 public class DailyReport {
 
     @Id
@@ -36,7 +36,7 @@ public class DailyReport {
 
     private float profits;
 
-    @OneToMany(mappedBy = "dailyReport", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "dailyReport")
     private List<OrderModel> orders;
 
     public DailyReport() {
@@ -92,5 +92,17 @@ public class DailyReport {
                 profits += prodakt.getPrice();
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "DailyReport{" +
+                "id=" + id +
+                ", date=" + date +
+                ", user=" + user +
+                ", dish_price=" + dish_price +
+                ", dish_quantity=" + dish_quantity +
+                ", profits=" + profits +
+                '}';
     }
 }

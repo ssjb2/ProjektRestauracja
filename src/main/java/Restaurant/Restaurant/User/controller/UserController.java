@@ -1,4 +1,4 @@
-package Restaurant.Restaurant.User.Controller;
+package Restaurant.Restaurant.User.controller;
 
 import Restaurant.Restaurant.DailyReport.Model.DailyReport;
 import Restaurant.Restaurant.DailyReport.Service.DailyReportService;
@@ -179,7 +179,6 @@ public class UserController {
         this.addOrderToDailyReport(order);
         orderService.addOrder(order);
 
-
         session.removeAttribute("cart");
         session.removeAttribute("total");
         model.addAttribute("add",true);
@@ -198,9 +197,8 @@ public class UserController {
         }
 
         currentDay.addOrder(order);
-        dailyReportService.addDailyReport(currentDay);
         order.setDailyReport(currentDay);
-
+        dailyReportService.addDailyReport(currentDay);
     }
 
     @GetMapping("orderList/{restaurant}")
