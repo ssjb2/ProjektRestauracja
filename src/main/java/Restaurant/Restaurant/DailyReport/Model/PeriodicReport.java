@@ -81,7 +81,8 @@ public class PeriodicReport {
     }
 
     private void updateProfits() {
-        //TODO
+        for(DailyReport raporty : this.listDailyReports){
+            this.profits += raporty.getProfits();
+        }
     }
-
 }

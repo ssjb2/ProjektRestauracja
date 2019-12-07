@@ -3,38 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .form-signin {
+            max-width: 280px;
+            padding: 15px;
+            margin:200px;
+            margin-top:80px;
+            margin-left: 130px;
+        }
+
+        .input-group-addon
+        {
+            background-color: rgb(50, 118, 177);
+            border-color: rgb(40, 94, 142);
+            color: rgb(255, 255, 255);
+        }
+
+        .form-signup input[type="text"],.form-signup input[type="password"] { border: 1px solid rgb(50, 118, 177); }
+        .fullscreen_bg {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        table {
+            width: 100%;
+            display:block;
+        }
+        thead {
+            display: inline-table;
+            width: 100%;
+            height: 30px;
+        }
+        tbody {
+            height: 150px;
+            display: inline-block;
+            width: 100%;
+            overflow: auto;
+        }
+        tr {
+            display: inline-table;
+            width: 100%;
+            height: 30px;
+        }
+        td {
+            display: inline-block;
+            width: 32%;
+            height: 30px;
+        }
+        .col-centered{
+            float: none;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-tEST PERIODIC REPORT
-<form th:action="@{/admin/report/getReportByDate}" method="post">
-    Od: <input type="date" name="begin" value="2019-01-10">
-    Do: <input type="date" name="end" value="2019-01-10">
-    <button type="submit" class="btn btn-primary btn-block">Pobierz</button>
-</form>
+
+<div class="row">
+    <div class="col-xs-12" style="background-color:gray; height:50px">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/admin/homepage">Restaurant</a>
+                </div>
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Użytkownicy
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/newUser">Dodaj</a></li>
+                            <li><a href="/admin/listUsers">Lista</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Restauracje
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/restaurant/newRestaurant">Dodaj</a></li>
+                            <li><a href="/admin/restaurant/listRestaurants">Lista</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dania
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/dish/newDish">Dodaj</a></li>
+                            <li><a href="/admin/dish/listDishes">Lista</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Raporty
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/report/dailyReportPage">Rapordy dzienne</a></li>
+                            <li><a href="/admin/report/periodicReportPage">Raporty okresowe</a></li>
+                        </ul>
+                    </li>
+                </ul>
 
 
-<div th:if="${listReports}">
-    <div th:each="report : ${listReports}">
-        <a th:href="@{'/admin/report/getDailyReport/' + ${report.id}}" th:text="${report.date}"></a>
-        <span th:text="${report.profits} + ' zł'"></span>
+                <form method="GET" th:action="@{/logout}" class="navbar-form navbar-right">
+
+                    <input type="hidden">
+                    <button type="submit" name="logout" value="true" class="btn btn-secondary">
+                        Logout <span class="badge badge-light"><font size="2" th:text="${currentUserName}">default</font></span>
+                    </button>
+                </form>
+            </div>
+        </nav>
     </div>
+</div>
+<br><br>
+<div class="col-xs-7 col-centered text-center">
 
-    <div>
-        <span>Sztuki:</span>
-        <div th:each="map : ${sumReport.dish_quantity}">
-            <span th:text="${map.key}">ww</span>
-            <span th:text="${map.value}">ddd</span>
-        </div>
-        <br> <br>
-        <span>Zyski:</span>
-        <div th:each="map : ${sumReport.dish_price}">
+    <div class="panel panel-default">
 
-            <span th:text="${map.key}">ww</span> :
-            <span th:text="${map.value}">ddd</span> zł
+        <div class="panel panel-primary">
+
+
+            <div class="text-center">
+                <h3 style="color:#2C3E50" >Raport okresowy</h3>
+
+                <h5><label style="color:#E74C3C"> Zakres dni:</label></h5>
+                <form method="post" th:action="@{/admin/report/getReportByDate}">
+                    <div class="customer" style="margin-left:30%;">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input style="width:30%" type="date" class="form-control" value="2019-01-10" name="begin">
+                            <input style="width:30%" type="date" class="form-control" value="2019-01-10" name="end">
+                        </div>
+                    </div>          <br>
+                    <button type="submit" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-search"></span> Szukaj</button>
+
+                    <div th:if="${listReports}" class="panel-body">
+
+                        <table class="table table-striped table-condensed">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Data</th>
+                                <th class="text-center">Zysk</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="report : ${listReports}">
+                                <td style="display: inline-block; width: 49%; height: 30px;" class="text-center">
+                                    <a th:href="@{'/admin/report/getDailyReport/' + ${report.id}}" th:text="${report.date}"></a>
+                                </td>
+                                <td style="display: inline-block; width: 49%; height: 30px;" class="text-center">
+                                    <span th:text="${report.profits} + ' zł'"></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+
+                </form>
+            </div>
+            <div th:if="${sumReport}" class="panel-body">
+
+                <table class="table table-striped table-condensed">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Produkt</th>
+                        <th class="text-center">Sztuki</th>
+                        <th class="text-center">Wartosc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div th:each="map : ${sumReport.dish_quantity}">
+                        <tr >
+                            <td class="text-center" th:text="${map.key}">Test</td>
+                            <td class="text-center" th:text="${map.value}">5</td>
+                            <td class="text-center" th:text="${sumReport.dish_price.get('__${map.key}__')}" >500</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <h4> <label style="color:#E74C3C">Suma:</label><span th:text="${sumReport.profits}"></span> zł</h4> </div>
+
+            </div>
+            <div th:if="${reportNotExist}" class="alert alert-danger text-center">
+                W tym dniu nie zostały utworzone żadne zamówienia
+            </div>
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

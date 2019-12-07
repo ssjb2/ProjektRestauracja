@@ -5,6 +5,9 @@ import Restaurant.Restaurant.DailyReport.Model.PeriodicReport;
 import Restaurant.Restaurant.DailyReport.Service.DailyReportService;
 import Restaurant.Restaurant.DailyReport.Service.PeriodicReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +29,8 @@ public class PeriodicReportController {
     DailyReportService dailyReportService;
 
     @GetMapping("/periodicReportPage")
-    public String getPeriodicReportHomepage(){
-
+    public String getPeriodicReportHomepage(Model model){
+        model.addAttribute("currentUserName", this.getUsername());
         return "report/periodicReportHomepage";
     }
 
@@ -44,18 +47,28 @@ public class PeriodicReportController {
         List<DailyReport> listDailyReportsBetweenDates = dailyReportService.getDailyReportBetween(localDateBegin,localDateEnd);
         currentPeriodicReport.setListDailyReports(listDailyReportsBetweenDates);
         currentPeriodicReport.update();
-        System.out.println("price: "+currentPeriodicReport.getDish_price());
-        System.out.println("quantity: "+currentPeriodicReport.getDish_quantity());
-
-        System.out.println("ile raportów: "+listDailyReportsBetweenDates.size());
 
         if(listDailyReportsBetweenDates.size()>0){
             model.addAttribute("listReports", listDailyReportsBetweenDates);
             model.addAttribute("sumReport", currentPeriodicReport);
         }
 
-        System.out.println("LocalDate od: = "+localDateBegin+",    do: "+localDateEnd);
+        model.addAttribute("currentUserName", this.getUsername());
+
+        System.out.println("profits : "+currentPeriodicReport.getProfits());
+
+
         return "report/periodicReportHomepage";
+    }
+
+    public String getUsername(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            return currentUserName;
+
+        }
+        return null;
     }
 
 
