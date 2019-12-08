@@ -195,25 +195,78 @@
                     <div class="panel-heading">
 
                         <h3 class="panel-title" style="line-height: 30px;"><b>Products Page</b></h3>
-                        <div class="pull-right">
-                            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtruj</button>
-                        </div>
+<!--                        <div class="pull-right">-->
+<!--                            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtruj</button>-->
+<!--                        </div>-->
                     </div>
                     <table class="table table-striped">
                         <thead>
-                        <tr class="filters">
-                            <th><input type="text" class="form-control" placeholder="Nazwa" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Cena" disabled></th>
-                        </tr>
+                        <!-- <tr class="filters"> -->
+                        <!-- <th><input type="text" class="form-control" placeholder="Nazwa" disabled></th> -->
+                        <!-- <th><input type="text" class="form-control" placeholder="Cena" disabled></th> -->
+                        <!-- </tr> -->
                         </thead>
                         <tbody>
-                        <tr th:each="dish : ${listAllDishes}">
-                            <td th:text="${dish.name}" style="line-height: 34px;"></td>
-                            <td th:text="${dish.price} + ' zł'" style="line-height: 34px;"></td>
-                            <td align="center">
-                                <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            </td>
-                        </tr>
+                        <!-- <tr th:each="dish : ${listAllDishes}"> -->
+                        <!-- <td th:text="${dish.name}" style="line-height: 34px;"></td> -->
+                        <!-- <td th:text="${dish.price} + ' zł'" style="line-height: 34px;"></td> -->
+                        <!-- <td align="center"> -->
+                        <!-- <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a> -->
+                        <!-- </td> -->
+                        <!-- </tr> -->
+
+<!--                        poczatek rozwijanego-->
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#category1">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                               <span class="glyphicon glyphicon-file"></span>category1
+                                        </h4>
+                                    </div></a>
+                                <div id="category1" class="panel-collapse collapse">
+                                    <div th:each="dish : ${listAllDishes}" class="list-group">
+                                        <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#category2">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                             <span class="glyphicon glyphicon-file"></span>category2
+                                        </h4>
+                                    </div></a>
+                                <div id="category2" class="panel-collapse collapse">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#category3">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                             <span class="glyphicon glyphicon-file"></span>category3
+                                        </h4>
+                                    </div></a>
+                                <div id="category3" class="panel-collapse collapse">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<!--                        koniec-->
+
                         </tbody>
                     </table>
                 </div>
