@@ -21,6 +21,7 @@ public class Dish {
     private Long id;
     private String name;
     private float price;
+    private String category;
 
 
     public Dish(String name, float price) {

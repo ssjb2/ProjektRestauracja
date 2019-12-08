@@ -40,6 +40,7 @@ public class DishController {
     @ResponseBody
     public ModelAndView addDish(@RequestParam("nazwa") String nazwa,
                                 @RequestParam("cena") float cena,
+                                @RequestParam("category") String category,
                                 Model model){
 
         //check username is used
@@ -48,7 +49,7 @@ public class DishController {
             return new ModelAndView("redirect:/admin/dish/newDish");
         }
         else{
-            dishService.addDish(nazwa, cena);
+            dishService.addDish(nazwa, cena, category);
             model.addAttribute("add", true);
             return new ModelAndView("redirect:/admin/dish/listDishes");
         }

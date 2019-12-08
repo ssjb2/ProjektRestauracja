@@ -16,10 +16,11 @@ public class DishServiceImpl implements DishService{
     DishRepository dishRepository;
 
     @Override
-    public Dish addDish(String nazwa, float cena) {
+    public Dish addDish(String nazwa, float cena, String category) {
         Dish dish = new Dish();
         dish.setName(nazwa);
         dish.setPrice(cena);
+        dish.setCategory((category));
         return dishRepository.save(dish);
     }
 

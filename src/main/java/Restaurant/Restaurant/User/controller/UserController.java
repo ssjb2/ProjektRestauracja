@@ -84,6 +84,7 @@ public class UserController {
         model.addAttribute("currentUserName", this.getUsername());
 
         List<Dish> listAllDishes = dishService.getAll();
+        System.out.println(listAllDishes);
 
 
         model.addAttribute("listAllDishes", listAllDishes);

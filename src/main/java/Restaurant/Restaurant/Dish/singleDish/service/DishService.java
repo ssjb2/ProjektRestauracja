@@ -12,7 +12,7 @@ public interface DishService {
 
     public List<Dish> getAll();
 
-    public Dish addDish(String nazwa, float cena);
+    public Dish addDish(String nazwa, float cena, String category);
 
     public Dish getByName(String Dishname);
 

@@ -221,29 +221,26 @@
                                 <a data-toggle="collapse" data-parent="#accordion" href="#category1">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                               <span class="glyphicon glyphicon-file"></span>category1
+                                               <span class="glyphicon glyphicon-file"></span>Fast foody
                                         </h4>
                                     </div></a>
                                 <div id="category1" class="panel-collapse collapse">
-                                    <div th:each="dish : ${listAllDishes}" class="list-group">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'fastfood']}" class="list-group">
                                         <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#category2">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                             <span class="glyphicon glyphicon-file"></span>category2
+                                             <span class="glyphicon glyphicon-file"></span>Napoje
                                         </h4>
                                     </div></a>
                                 <div id="category2" class="panel-collapse collapse">
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                    <div th:each="dish : ${listAllDishes.?[category == 'napoje']}" class="list-group">
+                                        <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
                             </div>
