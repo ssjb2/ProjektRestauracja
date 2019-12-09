@@ -49,7 +49,7 @@ public class DishServiceImpl implements DishService{
 
 
     @Override
-    public void editDish(Long id, String name, float price) {
+    public void editDish(Long id, String name, float price, String category) {
         Dish dish = dishRepository.getOne(id);
 
         //sprawdza czy nazwa isnieje, tylko jeśli jest inna niż edytowana
@@ -60,6 +60,7 @@ public class DishServiceImpl implements DishService{
         }
         dish.setName(name);
         dish.setPrice(price);
+        dish.setCategory(category);
         dishRepository.save(dish);
     }
 

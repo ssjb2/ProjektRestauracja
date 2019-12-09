@@ -77,6 +77,7 @@ public class DishController {
 
             model.addAttribute("name", dish.getName());
             model.addAttribute("price",dish.getPrice());
+            model.addAttribute("category",dish.getCategory());
             model.addAttribute("ajdi",dish.getId());
         }
         return "dishes/editDish";
@@ -85,11 +86,12 @@ public class DishController {
     @PostMapping("/confirmEditDish/{id}")
     public ModelAndView confirmEditDish(@RequestParam("nazwa") String name,
                                         @RequestParam("cena") float price,
+                                        @RequestParam("category") String category,
                                         @PathVariable Long id,
                                         Model model){
 
         try {
-            dishService.editDish(id, name, price);
+            dishService.editDish(id, name, price, category);
             model.addAttribute("update", true);
             return new ModelAndView("redirect:/admin/dish/listDishes");
         }

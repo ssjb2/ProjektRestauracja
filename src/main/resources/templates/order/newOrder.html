@@ -6,8 +6,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
@@ -216,15 +215,57 @@
                         <!-- </tr> -->
 
 <!--                        poczatek rozwijanego-->
-                        <div class="panel-group" id="accordion">
+                        <div class="panel-group" id="accordion" style="margin-bottom: 0px">
                             <div class="panel panel-default">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#category1">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#daniaglowne">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                               <span class="glyphicon glyphicon-file"></span>Fast foody
+                                            <i class="fas fa-utensils"></i> Dania główne <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'daniaglowne'])}"></font></span>
                                         </h4>
                                     </div></a>
-                                <div id="category1" class="panel-collapse collapse">
+                                <div id="daniaglowne" class="panel-collapse collapse">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'daniaglowne']}" class="list-group">
+                                        <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel panel-default">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#dodatki">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <img src="https://image.flaticon.com/icons/svg/135/135445.svg" style="width: 21px"/> Dodatki <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'dodatki'])}"></font></span>
+                                        </h4>
+                                    </div></a>
+                                <div id="dodatki" class="panel-collapse collapse">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'dodatki']}" class="list-group">
+                                        <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel panel-default">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#zupy">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <img src="https://cdn0.iconfinder.com/data/icons/foods-and-meals-1/24/food-bowl-soup-512.png" style="width: 21px"/> Zupy <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'zupy'])}"></font></span>
+                                        </h4>
+                                    </div></a>
+                                <div id="zupy" class="panel-collapse collapse">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'zupy']}" class="list-group">
+                                        <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel panel-default">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#fastfood">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <i class="fas fa-hamburger"></i> Fast food <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'fastfood'])}"></font></span>
+                                        </h4>
+                                    </div></a>
+                                <div id="fastfood" class="panel-collapse collapse">
                                     <div th:each="dish : ${listAllDishes.?[category == 'fastfood']}" class="list-group">
                                         <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
@@ -232,32 +273,29 @@
 
                             </div>
                             <div class="panel panel-default">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#category2">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#salatki">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                             <span class="glyphicon glyphicon-file"></span>Napoje
+                                            <img src="https://cdn2.iconfinder.com/data/icons/restaurant-outline-3/64/Bowl-food-mix-mixing-512.png" style="width: 21px"/> Sałatki <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'salatki'])}"></font></span>
                                         </h4>
                                     </div></a>
-                                <div id="category2" class="panel-collapse collapse">
-                                    <div th:each="dish : ${listAllDishes.?[category == 'napoje']}" class="list-group">
+                                <div id="salatki" class="panel-collapse collapse">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'salatki']}" class="list-group">
                                         <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="panel panel-default">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#category3">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#napoje">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                             <span class="glyphicon glyphicon-file"></span>category3
+                                            <i class="fas fa-coffee"></i> Napoje <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'napoje'])}"></font></span>
                                         </h4>
                                     </div></a>
-                                <div id="category3" class="panel-collapse collapse">
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
-                                        <a href="#" class="list-group-item">Nazwa (cena)</a>
+                                <div id="napoje" class="panel-collapse collapse">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'napoje']}" class="list-group">
+                                        <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
                             </div>

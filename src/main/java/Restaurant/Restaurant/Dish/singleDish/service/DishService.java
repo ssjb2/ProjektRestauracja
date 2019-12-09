@@ -16,7 +16,7 @@ public interface DishService {
 
     public Dish getByName(String Dishname);
 
-    public void editDish(Long id, String name,float price);
+    public void editDish(Long id, String name,float price, String category);
 
     public void removeDish(Long id);
 
