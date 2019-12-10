@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant</title>
     <style>
         .notice {
@@ -179,14 +179,14 @@
 
     <div class="row">
 
-        <div class="col-xs-12 text-center" style="display: table">
-            <div class="container" style="width:500px">
+        <div class="col-xs-12 text-center" style="display: table; padding-left: 0px; padding-right: 0px">
+            <div class="container" style="max-width:500px">
                 <div class="notice notice-sm">
                     Aktualna restauracja: <strong><span th:text="${currentUserRestaurant}">Użytkownik nie jest przypisany do żadnej restauracji</span></strong>
                 </div>
             </div>
             <div class="clearfix"><br /></div>
-            <div class="container" style="width: 700px">
+            <div class="container" style="max-width: 700px">
 
                 <div>
 
@@ -218,7 +218,7 @@
                 <div id="fancy-list-group">
                     <div class="row">
                         <div class="list-group">
-                            <div class="col-xs-12">
+                            <div class="col-xs-12" style="padding-left: 0px; padding-right: 0px">
                                 <li class="list-group-item list-group-item-success">
                                     <div class="list-group-item-addon">
                                         <span class="glyphicon glyphicon-list-alt"></span>
