@@ -8,6 +8,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <style>
         @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
@@ -109,53 +110,51 @@
 </script>
 <div class="container" style="width: 100%">
     <div class="row">
-        <div class="col-xs-12" style="background-color:gray; height:50px">
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/user/homepage">Restaurant</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Zamówienia
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/user/newOrder">Dodaj zamówienie</a></li>
-                                <li><a th:href="@{'/user/orderList/' + ${currentUserRestaurant}}">Wyświetl zamówienie</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-
-
-                    <form method="GET" th:action="@{/logout}" class="navbar-form navbar-right">
-
-                        <input type="hidden">
-                        <button type="submit" name="logout" value="true" class="btn btn-secondary">
-                            Logout <span class="badge badge-light"><font size="2" th:text="${currentUserName}">default</font></span>
-                        </button>
-                    </form>
+        <nav class="navbar navbar-inverse" style="border-radius: 0px; margin-bottom: 0px">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/user/homepage">Restaurant</a>
                 </div>
-            </nav>
-        </div>
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Zamówienia
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="newOrder">Dodaj zamówienie</a></li>
+                            <li><a th:href="@{'/user/orderList/' + ${currentUserRestaurant}}">Wyświetl zamówienie</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+
+                <form method="GET" th:action="@{/logout}" class="navbar-form navbar-right">
+
+                    <input type="hidden">
+                    <button type="submit" name="logout" value="true" class="btn btn-secondary">
+                        Logout <span class="badge badge-light"><font size="2" th:text="${currentUserName}">default</font></span>
+                    </button>
+                </form>
+            </div>
+        </nav>
     </div>
     <div class="row">
-        <div class="col-xs-10" style="background-color:white; height: 95vh; display: table">
+        <div class="col-xs-12" style=" display: table">
 
 
             <div class="container">
                 <div class="row">
 
 
-                    <div class="col-md-6 text-center">
+                    <div class="col-md-6 text-center" >
                         <div class="panel panel-warning panel-pricing">
                             <div class="panel-heading">
                                 <i class="fa fa-list-alt"></i>
                                 <h3>W realizacji</h3>
                             </div>
 
-                            <ul class="list-group text-center">
+                            <ul class="list-group text-center" style="margin-top: 5px">
                                 <table id="dtBasicExample2" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
@@ -181,7 +180,7 @@
                                 <i class="fa fa-list-alt"></i>
                                 <h3>Zrealizowane</h3>
                             </div>
-                            <ul class="list-group text-center">
+                            <ul class="list-group text-center" style="margin-top: 5px;">
                                 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>

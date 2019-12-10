@@ -147,42 +147,39 @@
 
 <div class="container" style="width: 100%">
     <div class="row">
-        <div class="col-xs-12" style="background-color:gray; height:50px">
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/user/homepage">Restaurant</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Zamówienia
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="newOrder">Dodaj zamówienie</a></li>
-                                <li><a th:href="@{'/user/orderList/' + ${currentUserRestaurant}}">Wyświetl zamówienie</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-
-
-                    <form method="GET" th:action="@{/logout}" class="navbar-form navbar-right">
-
-                        <input type="hidden">
-                        <button type="submit" name="logout" value="true" class="btn btn-secondary">
-                            Logout <span class="badge badge-light"><font size="2" th:text="${currentUserName}">default</font></span>
-                        </button>
-                    </form>
+        <nav class="navbar navbar-inverse" style="border-radius: 0px; margin-bottom: 0px">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/user/homepage">Restaurant</a>
                 </div>
-            </nav>
-        </div>
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Zamówienia
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="newOrder">Dodaj zamówienie</a></li>
+                            <li><a th:href="@{'/user/orderList/' + ${currentUserRestaurant}}">Wyświetl zamówienie</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+
+                <form method="GET" th:action="@{/logout}" class="navbar-form navbar-right">
+
+                    <input type="hidden">
+                    <button type="submit" name="logout" value="true" class="btn btn-secondary">
+                        Logout <span class="badge badge-light"><font size="2" th:text="${currentUserName}">default</font></span>
+                    </button>
+                </form>
+            </div>
+        </nav>
     </div>
 
     <div class="row">
-        <div class="col-xs-1" style="background-color:lightgray; height: 95vh"></div>
 
-        <div class="col-xs-10 text-center" style="background-color:white; height: 95vh; display: table">
+        <div class="col-xs-12 text-center" style="display: table">
             <div class="container" style="width:500px">
                 <div class="notice notice-sm">
                     Aktualna restauracja: <strong><span th:text="${currentUserRestaurant}">Użytkownik nie jest przypisany do żadnej restauracji</span></strong>
@@ -229,15 +226,15 @@
 
 
 
-                                    <div class="list-group-item-content">
-                                        <h4 class="list-group-item-heading">Zamówienia</h4>
+                                    <div class="list-group-item-content" style="font-size: 18px; height: 125px; padding-top: 35px;">
+                                        <h2 class="list-group-item-heading" style="margin-top:-5px">Zamówienia</h2>
                                         <p class="list-group-item-text">Zarządzaj zamówieniami</p>
                                     </div>
                                     <div class="list-group-item-controls">
                                         <span class="label">Controls</span>
                                         <div class="btn-group">
-                                            <a href="newOrder" title="Add"><span class="glyphicon glyphicon-plus"></span></a>
-                                            <a th:href="@{'/user/orderList/' + ${currentUserRestaurant}}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="newOrder" title="Add"><span class="glyphicon glyphicon-plus" style="font-size: 35px"></span></a>
+                                            <a th:href="@{'/user/orderList/' + ${currentUserRestaurant}}" title="Edit"><span class="glyphicon glyphicon-pencil" style="font-size: 35px"></span></a>
                                         </div>
                                     </div>
                                 </li>
@@ -247,7 +244,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-1" style="background-color:lightgray; height:95vh"></div>
     </div>
 </div>
 </body>
