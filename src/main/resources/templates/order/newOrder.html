@@ -7,9 +7,42 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        .panel-group .panel:last-child{
+            margin-bottom:0px;
+        }
+
+        .panel-title2{
+            padding: 5px 5px;
+            font-size: 22px;
+        }
+
+        .list-group-item{
+            padding: 22px 15px;
+            font-size: 21px;
+        }
+
+        .list-group2{
+            margin-bottom: 8px;
+        }
+
+        .list-group2:first-child{
+            margin-top: 8px;
+        }
+
+        .list-group2:last-child{
+            margin-bottom: 0px;
+        }
+
+        .panel-title{
+            font-size: 21px;
+        }
+        .panel-group .panel {
+            margin-bottom: 15px;
+        }
         .panel-table .panel-body{
             padding:0;
         }
@@ -88,7 +121,7 @@
             background-color: #f2f2f2;
             border-color: lightgray;
             color: #333333;
-            height: 50px;
+            height: 70px;
         }
         .filterable .filters input[disabled]::-webkit-input-placeholder {
             color: #333;
@@ -154,7 +187,7 @@
 
 <div class="container" style="width: 100%">
     <div class="row">
-        <div class="col-xs-12" style="background-color:gray; height:50px">
+        <div class="col-lg-12" style="background-color:gray; height:50px">
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -186,10 +219,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-1 hidden-sm hidden-xs" style="background-color:lightgray; height: 95vh"></div>
-        <div class="col-xs-12 col-md-10" style="background-color:white; height: 95vh; display: table">
+        <div class="col-xs-12 col-md-12" style="display: table">
 
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <div class="panel panel-primary filterable" >
                     <div class="panel-heading">
 
@@ -219,13 +251,13 @@
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#daniaglowne">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">
+                                        <h4 class="panel-title2">
                                             <i class="fas fa-utensils"></i> Dania główne <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'daniaglowne'])}"></font></span>
                                         </h4>
                                     </div></a>
                                 <div id="daniaglowne" class="panel-collapse collapse">
-                                    <div th:each="dish : ${listAllDishes.?[category == 'daniaglowne']}" class="list-group">
-                                        <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
+                                    <div th:each="dish : ${listAllDishes.?[category == 'daniaglowne']}" class="list-group2">
+                                        <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item" style="padding: 23px 15px;"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
 
@@ -233,12 +265,12 @@
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#dodatki">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">
+                                        <h4 class="panel-title2">
                                             <img src="https://image.flaticon.com/icons/svg/135/135445.svg" style="width: 21px"/> Dodatki <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'dodatki'])}"></font></span>
                                         </h4>
                                     </div></a>
                                 <div id="dodatki" class="panel-collapse collapse">
-                                    <div th:each="dish : ${listAllDishes.?[category == 'dodatki']}" class="list-group">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'dodatki']}" class="list-group2">
                                         <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
@@ -247,12 +279,12 @@
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#zupy">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">
+                                        <h4 class="panel-title2">
                                             <img src="https://cdn0.iconfinder.com/data/icons/foods-and-meals-1/24/food-bowl-soup-512.png" style="width: 21px"/> Zupy <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'zupy'])}"></font></span>
                                         </h4>
                                     </div></a>
                                 <div id="zupy" class="panel-collapse collapse">
-                                    <div th:each="dish : ${listAllDishes.?[category == 'zupy']}" class="list-group">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'zupy']}" class="list-group2">
                                         <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
@@ -261,12 +293,12 @@
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#fastfood">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">
+                                        <h4 class="panel-title2">
                                             <i class="fas fa-hamburger"></i> Fast food <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'fastfood'])}"></font></span>
                                         </h4>
                                     </div></a>
                                 <div id="fastfood" class="panel-collapse collapse">
-                                    <div th:each="dish : ${listAllDishes.?[category == 'fastfood']}" class="list-group">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'fastfood']}" class="list-group2">
                                         <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
@@ -275,12 +307,12 @@
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#salatki">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">
+                                        <h4 class="panel-title2">
                                             <img src="https://cdn2.iconfinder.com/data/icons/restaurant-outline-3/64/Bowl-food-mix-mixing-512.png" style="width: 21px"/> Sałatki <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'salatki'])}"></font></span>
                                         </h4>
                                     </div></a>
                                 <div id="salatki" class="panel-collapse collapse">
-                                    <div th:each="dish : ${listAllDishes.?[category == 'salatki']}" class="list-group">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'salatki']}" class="list-group2">
                                         <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
@@ -289,12 +321,12 @@
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#napoje">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">
+                                        <h4 class="panel-title2">
                                             <i class="fas fa-coffee"></i> Napoje <span class="badge badge-light"><font size="2" th:text="${#lists.size(listAllDishes.?[category == 'napoje'])}"></font></span>
                                         </h4>
                                     </div></a>
                                 <div id="napoje" class="panel-collapse collapse">
-                                    <div th:each="dish : ${listAllDishes.?[category == 'napoje']}" class="list-group">
+                                    <div th:each="dish : ${listAllDishes.?[category == 'napoje']}" class="list-group2">
                                         <a th:href="@{'/user/addProduct/' + ${dish.id}}" class="list-group-item"><span th:text="${dish.name}"></span> <span th:text="'(' + ${dish.price} + ' zł)'" class="pull-right"></span></a>
                                     </div>
                                 </div>
@@ -310,7 +342,7 @@
 
 
 
-            <div class="col-lg-9">
+            <div class="col-lg-8">
 
                 <div class="panel panel-default panel-table" style="margin-top: 15px; margin-right: 15px">
                     <div class="panel-heading">
@@ -323,18 +355,18 @@
                     <div class="panel-body">
                         <table class="table table-striped table-bordered table-list">
                             <thead>
-                            <tr>
+                            <tr style="font-size: 18px">
                                 <th><em class="fa fa-cog"></em></th>
                                 <th>Nazwa</th>
-                                <th>Cena</th>
-                                <th>Ilosc</th>
-                                <th>Suma</th>
+                                <th style="width: 10%">Cena</th>
+                                <th style="width: 10%">Ilosc</th>
+                                <th style="width: 10%">Suma</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="product : ${session.cart}">
+                            <tr th:each="product : ${session.cart}" style="font-size: 17px">
                                 <td align="center">
-                                    <a th:href="@{'/user/remove/' + ${product.dish.id}}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a th:href="@{'/user/remove/' + ${product.dish.id}}" class="btn btn-danger" style="font-size: 18px"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
                                 <td th:text="${product.dish.name}">${item.product.name }</td>
                                 <td th:text="${product.dish.price} + ' zł'">${item.product.price }</td>
@@ -348,7 +380,7 @@
                     <div class="panel-footer">
                         <div class="row">
                             <div class="col col-xs-4">
-                                <a href="/user/confirmAddOrder"><button type="button" class="btn btn-sm btn-primary btn-create">Zatwierdź zamówienie</button></a>
+                                <a href="/user/confirmAddOrder"><button type="button" class="btn btn-sm btn-primary btn-create" style="font-size: 18px">Zatwierdź zamówienie</button></a>
                             </div>
                             <div class="col col-xs-8">
                                 <ul class="pagination hidden-xs pull-right">
@@ -363,7 +395,6 @@
             </div>
 
         </div>
-        <div class="col-md-1 hidden-sm hidden-xs" style="background-color:lightgray; height: 95vh"></div>
     </div>
 </body>
 </html>
