@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant</title>
     <style>
         #fancy-list-group .list-group li.list-group-item {
@@ -130,7 +131,6 @@
 
 <div class="container" style="width: 100%">
     <div class="row">
-        <div class="col-xs-12" style="background-color:gray; height:50px">
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -183,31 +183,29 @@
                 </div>
             </nav>
         </div>
-    </div>
 
     <div class="row">
-        <div class="col-xs-1" style="background-color:lightgray; height:95vh"></div>
-        <div class="col-xs-10 text-center" style="background-color:white; height:95vh; display: table">
+        <div class="col-xs-12 text-center" style="display: table; padding-left: 0px; padding-right: 0px">
             <div class="clearfix"><br /></div>
-            <div class="container" style="width: 700px">
+            <div class="container" style="max-width: 700px">
                 <div id="fancy-list-group">
                     <div class="row">
                         <div class="list-group">
 
                             <div class="col-xs-12">
-                                <li class="list-group-item list-group-item-success">
+                                <li class="list-group-item list-group-item-success" style="margin-top: 50px">
                                     <div class="list-group-item-addon">
                                         <span class="glyphicon glyphicon-user"></span>
                                     </div>
-                                    <div class="list-group-item-content">
-                                        <h4 class="list-group-item-heading">Użytkownicy</h4>
+                                    <div class="list-group-item-content" style="font-size: 18px; height: 125px; padding-top: 35px;">
+                                        <h2 class="list-group-item-heading" style="margin-top:-5px">Użytkownicy</h2>
                                         <p class="list-group-item-text">Zarządzaj użytkownikami</p>
                                     </div>
                                     <div class="list-group-item-controls">
                                         <span class="label">Controls</span>
                                         <div class="btn-group">
-                                            <a href="/admin/newUser" title="Add"><span class="glyphicon glyphicon-plus"></span></a>
-                                            <a href="/admin/listUsers" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="/admin/newUser" title="Add"><span class="glyphicon glyphicon-plus" style="font-size: 35px"></span></a>
+                                            <a href="/admin/listUsers" title="Edit"><span class="glyphicon glyphicon-pencil" style="font-size: 35px"></span></a>
                                         </div>
                                     </div>
                                 </li>
@@ -215,15 +213,15 @@
                                     <div class="list-group-item-addon">
                                         <span class="glyphicon glyphicon-home"></span>
                                     </div>
-                                    <div class="list-group-item-content">
-                                        <h4 class="list-group-item-heading">Restauracje</h4>
+                                    <div class="list-group-item-content" style="font-size: 18px; height: 125px; padding-top: 35px;">
+                                        <h2 class="list-group-item-heading" style="margin-top:-5px">Restauracje</h2>
                                         <p class="list-group-item-text">Zarządzaj restauracjami</p>
                                     </div>
                                     <div class="list-group-item-controls">
                                         <span class="label">Controls</span>
                                         <div class="btn-group">
-                                            <a href="/admin/restaurant/newRestaurant" title="Add"><span class="glyphicon glyphicon-plus"></span></a>
-                                            <a href="/admin/restaurant/listRestaurants" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="/admin/restaurant/newRestaurant" title="Add"><span class="glyphicon glyphicon-plus" style="font-size: 35px"></span></a>
+                                            <a href="/admin/restaurant/listRestaurants" title="Edit"><span class="glyphicon glyphicon-pencil" style="font-size: 35px"></span></a>
                                         </div>
                                     </div>
                                 </li>
@@ -231,15 +229,15 @@
                                     <div class="list-group-item-addon">
                                         <span class="glyphicon glyphicon-cutlery"></span>
                                     </div>
-                                    <div class="list-group-item-content">
-                                        <h4 class="list-group-item-heading">Dania</h4>
+                                    <div class="list-group-item-content" style="font-size: 18px; height: 125px; padding-top: 35px;">
+                                        <h2 class="list-group-item-heading" style="margin-top:-5px">Dania</h2>
                                         <p class="list-group-item-text">Zarządzaj daniami</p>
                                     </div>
                                     <div class="list-group-item-controls">
                                         <span class="label">Controls</span>
                                         <div class="btn-group">
-                                            <a href="/admin/dish/newDish" title="Add"><span class="glyphicon glyphicon-plus"></span></a>
-                                            <a href="/admin/dish/listDishes" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="/admin/dish/newDish" title="Add"><span class="glyphicon glyphicon-plus" style="font-size: 35px"></span></a>
+                                            <a href="/admin/dish/listDishes" title="Edit"><span class="glyphicon glyphicon-pencil" style="font-size: 35px"></span></a>
                                         </div>
                                     </div>
                                 </li>
@@ -247,15 +245,15 @@
                                     <div class="list-group-item-addon">
                                         <span class="glyphicon glyphicon-inbox"></span>
                                     </div>
-                                    <div class="list-group-item-content">
-                                        <h4 class="list-group-item-heading">Raporty</h4>
+                                    <div class="list-group-item-content" style="font-size: 18px; height: 125px; padding-top: 35px;">
+                                        <h2 class="list-group-item-heading" style="margin-top:-5px">Raporty</h2>
                                         <p class="list-group-item-text">Zarządzaj raportami</p>
                                     </div>
                                     <div class="list-group-item-controls">
                                         <span class="label">Controls</span>
                                         <div class="btn-group">
-                                            <a href="/admin/report/dailyReportPage" title="Dzienne"><span class="glyphicon glyphicon-time"></span></a>
-                                            <a href="/admin/report/periodicReportPage" title="Okresowe"><span class="glyphicon glyphicon-calendar"></span></a>
+                                            <a href="/admin/report/dailyReportPage" title="Dzienne"><span class="glyphicon glyphicon-time" style="font-size: 35px"></span></a>
+                                            <a href="/admin/report/periodicReportPage" title="Okresowe"><span class="glyphicon glyphicon-calendar" style="font-size: 35px"></span></a>
                                         </div>
                                     </div>
                                 </li>
@@ -266,7 +264,6 @@
             </div>
 
         </div>
-        <div class="col-xs-1" style="background-color:lightgray; height:95vh"></div>
     </div>
 </div>
 </body>

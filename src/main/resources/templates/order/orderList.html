@@ -165,8 +165,8 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="order : ${currentOrdersActive}">
-                                        <td><span th:text="${order.date.dayOfMonth} + '-' + ${order.date.monthValue} + '-' + ${order.date.year} +'   godz.     ' +${order.date.hour} +':'+ ${order.date.minute}"></span>
-                                            <a th:href="@{'/user/selectOrder/' + ${order.id}}"><span class="glyphicon glyphicon-search"></span></a></td>
+                                        <td style="font-size: 18px"><span th:text="${order.date.dayOfMonth} + '-' + ${order.date.monthValue} + '-' + ${order.date.year} +'   godz.     ' +${order.date.hour} +':'+ ${order.date.minute}"></span>
+                                            <a th:href="@{'/user/selectOrder/' + ${order.id}}"><button type="button" class="btn btn-lg btn-primary">Podgląd</button></a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -191,7 +191,7 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="order : ${currentOrdersFinished}">
-                                        <td><span th:text="${order.date.dayOfMonth} + '-' + ${order.date.monthValue} + '-' + ${order.date.year} +'   godz.     ' +${order.date.hour} +':'+ ${order.date.minute}"></span></td>
+                                        <td  style="font-size: 18px"><span th:text="${order.date.dayOfMonth} + '-' + ${order.date.monthValue} + '-' + ${order.date.year} +'   godz.     ' +${order.date.hour} +':'+ ${order.date.minute}"></span></td>
                                     </tr>
                                     </tbody>
                                 </table>
