@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant</title>
 </head>
 <body>
 
 <div class="container" style="width: 100%">
     <div class="row">
-        <div class="col-xs-12" style="background-color:gray; height:50px">
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -65,37 +65,35 @@
                     </form>
                 </div>
             </nav>
-        </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-1" style="background-color:lightgray; height:95vh"></div>
-        <div class="col-xs-10 text-center" style="background-color:white; height:95vh; display: table"><br>
+        <div class="col-xs-12 text-center" style="display: table"><br>
 
             <div th:if="${param.nameIsUsed}" class="alert alert-error align-center">
                 <span>Nazwa jest zajęta</span>
             </div>
 
-            <div class="container" style="width: 700px; background-color: #f8f8f8; border: solid lightgray 1px">
+            <div class="container" style="max-width: 700px; background-color: #f8f8f8; border: solid lightgray 1px">
                 <form class="form-horizontal" role="form" th:action="@{/admin/dish/confirmAddDish}" method="post">
-                    <h2>Dodaj Danie</h2>
+                    <h1>Dodaj Danie</h1><br>
                     <div class="form-group">
-                        <label for="nazwa" class="col-sm-3 control-label">Nazwa</label>
+                        <label for="nazwa" class="col-sm-3 control-label" style="font-size: 20px;">Nazwa</label>
                         <div class="col-sm-9">
-                            <input type="text" id="nazwa" placeholder="nazwa" class="form-control" autofocus name="nazwa" value="">
+                            <input type="text" id="nazwa" placeholder="nazwa" class="form-control input-lg" autofocus name="nazwa" value="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="cena" class="col-sm-3 control-label">Cena</label>
+                        <label for="cena" class="col-sm-3 control-label" style="font-size: 20px;">Cena</label>
                         <div class="col-sm-9">
-                            <input type="number" step="0.01" id="cena" placeholder="cena" class="form-control" name="cena" value="">
+                            <input type="number" step="0.01" id="cena" placeholder="cena" class="form-control input-lg" name="cena" value="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="category" class="col-sm-3 control-label">Kategoria</label>
+                        <label for="category" class="col-sm-3 control-label" style="font-size: 20px;">Kategoria</label>
                         <div class="col-sm-9">
 <!--                            <input type="text" id="category" placeholder="Kategoria" class="form-control" name="category" value="">-->
-                            <select class="form-control" id="category" name="category">
+                            <select class="form-control input-lg" id="category" name="category">
                                 <option value="daniaglowne">Dania główne</option>
                                 <option value="dodatki">Dodatki</option>
                                 <option value="zupy">Zupy</option>
@@ -114,7 +112,6 @@
             </div>
 
         </div>
-        <div class="col-xs-1" style="background-color:lightgray; height:95vh"></div>
     </div>
 </div>
 </body>
